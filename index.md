@@ -1,7 +1,6 @@
 ---
 hero_link: "https://github.com/BradKennedy-PhD"
 hero_link_text: "View GitHub Repo"
-hero_darken: true
 hide_footer: true
 ---
 ## Welcome
