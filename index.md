@@ -1,12 +1,8 @@
 ---
 title: Bradley Kennedy's PhD GitHub Pages
 subtitle: Browse each study and the related files
-hero_link: 
- - "https://github.com/BradKennedy-PhD"
- - "https://google.com"
-hero_link_text: 
- - "View on GitHub" 
- - "Test"
+hero_link: "https://github.com/BradKennedy-PhD"
+hero_link_text: "View on GitHub"
 hide_footer: true
 ---
 Navigate through each study or use the button above to view on GitHub directly.
