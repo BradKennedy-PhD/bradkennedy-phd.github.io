@@ -1,11 +1,11 @@
 ---
+title: Bradley Kennedy's PhD GitHub Pages
+subtitle: Browse each study and the related files
 hero_link: "https://github.com/BradKennedy-PhD"
-hero_link_text: "View GitHub Repo"
+hero_link_text: "View on GitHub"
 hide_footer: true
 ---
-## Welcome
-
-Welcome text
+Navigate through each study or use the button above to view on GitHub directly.
 
 ### Projects
 - [Pilot Study](https://bradkennedy-phd.github.io/Pilot-study/)
