@@ -7,7 +7,6 @@ hide_footer: true
 ---
 Navigate through each study or use the button above to view on GitHub directly.
 
-### Projects
 - [Pilot Study](https://bradkennedy-phd.github.io/Pilot-study/)
 - [Knobe Replication](https://bradkennedy-phd.github.io/KnobeReplication/)
 - Study 1
