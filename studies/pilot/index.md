@@ -6,6 +6,10 @@ hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
+# Pilot Study
+
+***
+
 ## Description
 This online study examined the social opinions of various job roles and working sectors.
 

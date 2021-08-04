@@ -5,6 +5,10 @@ hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
+# Knobe (2003) Replication
+
+***
+
 ## Description
 
 ## Dataset
