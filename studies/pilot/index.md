@@ -1,8 +1,25 @@
 ---
 layout: page
 title: Pilot Study
+subtitle: Understanding current social opinions of job roles and sectors of work
 hide_hero: true
 hide_footer: true
+toc: true
 ---
+## Description
+This online study examined the social opinions of various job roles and working sectors.
 
-This is pilot page
+## Dataset
+
+## Analysis
+[R Script](/Pilot-study/Pilot-analysis-markdown)
+
+## Materials
+
+## Open Science Framework
+[OSF](https://osf.io/w279r/)
+
+
+## Other:
+Interactive results available [here](http://apps.bradleykennedy.co.uk/pilotdata/)  
+Poster available at [Figshare](https://doi.org/10.6084/m9.figshare.6860342.v1)  

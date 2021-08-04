@@ -4,5 +4,19 @@ title: Study 3
 hide_hero: true
 hide_footer: true
 ---
+## Description
 
-This is study 3 page
+## Dataset
+
+## Analysis
+[R Script](/link)
+
+## Materials
+
+## Open Science Framework
+[OSF](/link)
+
+
+## Other:
+
+
