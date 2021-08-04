@@ -7,5 +7,5 @@ hide_footer: true
 ---
 {% include notification.html
 message="This webpage is under construction - many links will not yet work"
-dismissable="true" %}
+status="is-info" %}
 
