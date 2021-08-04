@@ -7,7 +7,7 @@ menubar_toc: true
 ---
 {% include notification.html
 message="This page is not operational. All links will fail"
-icon="false"  %}
+icon="false" status="is-danger" %}
 
 ## Description
 
