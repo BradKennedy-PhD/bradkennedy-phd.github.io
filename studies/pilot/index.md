@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Pilot Study
-subtitle: Understanding current social opinions of job roles and sectors of work
 hide_hero: true
 hide_footer: true
+menubar_toc: true
 ---
 # Pilot Study
 
