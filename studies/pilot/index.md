@@ -20,7 +20,7 @@ This online study examined the social opinions of various job roles and working 
     </div>
     
     <script>
-      const filterFiles1 = (filter) => {
+      const filterFiles = (filter) => {
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
@@ -30,9 +30,9 @@ This online study examined the social opinions of various job roles and working 
         }
       }
       
-      const renderList1 = (data, filter = '') => {
+      const renderList = (data, filter = '') => {
         let htmlString = '<ul>';
-        for (let file of data.filter(filterFiles2(filter))) {
+        for (let file of data.filter(filterFiles(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ');
           htmlString += `<li><a href="https://github.com/BradKennedy-PhD/Pilot-study/master/analysis/${filePath}">${fileName}</a></li>`;
@@ -44,7 +44,7 @@ This online study examined the social opinions of various job roles and working 
       (async () => {
         const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/Pilot-study/analysis/contents/analysis');
         const data = await response.json();
-        renderList1(data);
+        renderList(data);
       })()
     </script>
 </html>
