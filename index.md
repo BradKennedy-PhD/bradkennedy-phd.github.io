@@ -5,6 +5,10 @@ hero_link: "https://github.com/BradKennedy-PhD"
 hero_link_text: "View on GitHub"
 hide_footer: true
 ---
+{% include notification.html
+message="This webpage is under construction - many links will not yet work"
+dismissable="true" %}
+
 Navigate through each study or use the button above to view on GitHub directly.
 
 - [Pilot Study](https://bradkennedy-phd.github.io/Pilot-study/)
