@@ -24,7 +24,7 @@ This online study examined the social opinions of various job roles and working 
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ');
+          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
           const isHTML = (/.html$/).test(filePath);
           return isHTML;
         }
@@ -35,7 +35,7 @@ This online study examined the social opinions of various job roles and working 
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ');
-          htmlString += `<li><a href="https://github.com/BradKennedy-PhD/Pilot-study/master/analysis/${filePath}">${fileName}</a></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}">${fileName}</a></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
