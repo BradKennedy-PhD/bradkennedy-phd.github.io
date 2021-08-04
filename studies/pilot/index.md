@@ -34,7 +34,7 @@ This online study examined the social opinions of various job roles and working 
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
-          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ');
+          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}">${fileName}</a></li>`;
         }
       htmlString += '</ul>';
