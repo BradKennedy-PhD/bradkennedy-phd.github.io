@@ -4,7 +4,7 @@ title: Pilot Study
 subtitle: Understanding current social opinions of job roles and sectors of work
 hide_hero: true
 hide_footer: true
-toc: true
+menubar_toc: true
 ---
 ## Description
 This online study examined the social opinions of various job roles and working sectors.
