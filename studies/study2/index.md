@@ -10,8 +10,12 @@ message="This page is not operational. All links will fail"
 icon="false" status="is-danger" %}
 
 ## Description
+Description here
+
 
 ## Dataset
+Link to dataset here
+
 
 <html>
     <div>
@@ -51,11 +55,11 @@ icon="false" status="is-danger" %}
 </html>
 
 ## Materials
+Link to materials here
 
 ## Open Science Framework
-[OSF](/link)
-
+Link to OSF here
 
 ## Other:
-
+Interactive results etc.
 

@@ -1,16 +1,21 @@
 ---
 layout: page
-title: Study 1
+title: Study 5
 hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
+{% include notification.html
+message="This page is not operational. All links will fail"
+icon="false" status="is-danger" %}
+
 ## Description
 Description here
 
 
 ## Dataset
 Link to dataset here
+
 
 <html>
     <div>
@@ -35,14 +40,14 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Study1/${filePath}">${fileName}</a></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/study5/${filePath}">${fileName}</a></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/study1/contents/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/study5/contents/analysis');
         const data = await response.json();
         renderList1(data);
       })()
@@ -57,4 +62,5 @@ Link to OSF here
 
 ## Other:
 Interactive results etc.
+
 
