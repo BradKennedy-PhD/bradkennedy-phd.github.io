@@ -9,12 +9,9 @@ menubar_toc: true
 ## Description
 This online study examined the social opinions of various job roles and working sectors.
 
-## Dataset
-
-## Analysis
 <html>
     <div>
-      <h2>Files in repo</h2>
+      <h2>Analysis</h2>
       <ul id="html_list">
       </ul>
     </div>
@@ -48,8 +45,6 @@ This online study examined the social opinions of various job roles and working 
       })()
     </script>
 </html>
-
-[R Script](/Pilot-study/Pilot-analysis-markdown)
 
 ## Materials
 
