@@ -1,8 +1,8 @@
 ---
 layout: page
-title: Pilot Study
+title: Study 1
 hide_hero: true
 hide_footer: true
 ---
 
-This is pilot page
+This is study 1 page
