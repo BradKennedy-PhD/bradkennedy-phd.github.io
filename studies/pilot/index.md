@@ -13,6 +13,9 @@ menubar_toc: true
 ## Description
 This online study examined the social opinions of various job roles and working sectors.
 
+## Dataset
+Link to dataset here
+
 <html>
     <div>
       <h2>Analysis</h2>
@@ -51,6 +54,7 @@ This online study examined the social opinions of various job roles and working 
 </html>
 
 ## Materials
+Link to materials here
 
 ## Open Science Framework
 [OSF](https://osf.io/w279r/)

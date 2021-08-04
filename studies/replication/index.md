@@ -10,8 +10,10 @@ menubar_toc: true
 ***
 
 ## Description
+Description here
 
 ## Dataset
+Link to dataset here
 
 <html>
     <div>
@@ -51,10 +53,11 @@ menubar_toc: true
 </html>
 
 ## Materials
+Link to materials here
 
 ## Open Science Framework
-[OSF](/link)
-
+Link to OSF here
 
 ## Other:
+Interactive results etc.
 
