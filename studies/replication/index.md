@@ -38,7 +38,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/KnobeReplication/${filePath}">${fileName}</a></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/KnobeReplication/${filePath}">R Markdown of Analysis</a></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
