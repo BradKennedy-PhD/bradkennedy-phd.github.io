@@ -39,7 +39,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Study1/${filePath}" target="_blank" rel="noopener noreferrer">R Markdown of Analysis</a></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Study1/${filePath}" target="_blank" rel="noopener noreferrer">R Markdown of Analysis </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
