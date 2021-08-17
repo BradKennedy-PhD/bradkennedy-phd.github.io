@@ -10,7 +10,6 @@ message="This page is not operational. All links will fail"
 icon="false" status="is-danger" %}
 
 # Study 3
-## _Subtitle_
 
 ***
 
