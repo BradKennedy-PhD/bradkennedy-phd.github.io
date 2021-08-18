@@ -5,10 +5,6 @@ hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
-{% include notification.html
-message="This page is not operational. All links will fail"
-icon="false" status="is-danger" %}
-
 # Study 3
 
 ***
