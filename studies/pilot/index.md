@@ -68,7 +68,7 @@ Link to dataset here
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const fileName = file.path.toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
           const isRMD = (/.Rmd$/).test(filePath);
           return isRMD;
         }
@@ -77,7 +77,7 @@ Link to dataset here
       const renderList2 = (data, filter = '') => {
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles2(filter))) {
-          const filePath = file.path.replace('.Rmd', '');
+          const filePath = file.path;
           const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
         }
