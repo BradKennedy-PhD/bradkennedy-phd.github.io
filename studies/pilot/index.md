@@ -79,7 +79,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path.replace('.Rmd', '');
           const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('rmd_list').innerHTML = htmlString;
