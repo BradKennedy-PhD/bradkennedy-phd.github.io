@@ -18,6 +18,7 @@ Link to dataset here
 <html>
     <div>
       <h2>Analysis</h2>
+      <h3>To read through the analysis and results:</h3>
       <ul id="html_list">
       </ul>
     </div>
@@ -38,7 +39,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">R Markdown of Analysis </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
@@ -48,6 +49,41 @@ Link to dataset here
         const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/Pilot-study/contents/analysis');
         const data = await response.json();
         renderList1(data);
+      })()
+    </script>
+</html>
+
+<h3>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</h3>
+<ul id="rmd_list">
+      </ul>
+    </div>
+    
+    <script>
+      const filterFiles2 = (filter) => {
+        filter = filter.toLowerCase()
+        return (file) => {
+          const filePath = file.path;
+          const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const isRMD = (/.Rmd$/).test(filePath);
+          return isRMD;
+        }
+      }
+      
+      const renderList2 = (data, filter = '') => {
+        let htmlString = '<ul>';
+        for (let file of data.filter(filterFiles2(filter))) {
+          const filePath = file.path.replace('.Rmd', '');
+          const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/Pilot-study/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
+        }
+      htmlString += '</ul>';
+        document.getElementById('rmd_list').innerHTML = htmlString;
+      }
+      
+      (async () => {
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/Pilot-study/contents/analysis');
+        const data = await response.json();
+        renderList2(data);
       })()
     </script>
 </html>
