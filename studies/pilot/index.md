@@ -5,20 +5,23 @@ hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
+
 # Pilot Study
 
-***
+---
 
 ## Description
+
 This online study examined the social opinions of various job roles and working sectors.
 
 ## Dataset
+
 Link to dataset here
 
 <html>
     <div>
       <h2>Analysis</h2>
-      <h3>To read through the analysis and results:</h3>
+      <h4>To read through the analysis and results:</h4>
       <ul id="html_list">
       </ul>
     </div>
@@ -53,7 +56,9 @@ Link to dataset here
     </script>
 </html>
 
-<h3>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</h3>
+<html>
+<div>
+<h4>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</h4>
 <ul id="rmd_list">
       </ul>
     </div>
@@ -89,12 +94,14 @@ Link to dataset here
 </html>
 
 ## Materials
+
 Link to materials here
 
 ## Open Science Framework
+
 [OSF](https://osf.io/w279r/)
 
-
 ## Other:
+
 Interactive results available [here](http://apps.bradleykennedy.co.uk/pilotdata/)  
-Poster available at [Figshare](https://doi.org/10.6084/m9.figshare.6860342.v1)  
+Poster available at [Figshare](https://doi.org/10.6084/m9.figshare.6860342.v1)
