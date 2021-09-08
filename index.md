@@ -6,6 +6,6 @@ hero_link_text: "Explore on GitHub"
 hide_footer: true
 ---
 {% include notification.html
-message="This webpage is under construction - many links will not yet work"
+message="This webpage is under construction - some links and pages will not yet work"
 status="is-info" %}
 
