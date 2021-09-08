@@ -21,7 +21,7 @@ Link to dataset here
 <html>
     <div>
       <h2>Analysis</h2>
-      <h4>To read through the analysis and results:</h4>
+      <p>To read through the analysis and results:</p>
       <ul id="html_list">
       </ul>
     </div>
@@ -58,7 +58,7 @@ Link to dataset here
 
 <html>
 <div>
-<h4>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</h4>
+<p>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</p>
 <ul id="rmd_list">
       </ul>
     </div>
