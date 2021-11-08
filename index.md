@@ -5,7 +5,8 @@ hero_link: "https://github.com/BradKennedy-PhD"
 hero_link_text: "Explore on GitHub"
 hide_footer: true
 ---
+Last update: 4 Aug 2021
 {% include notification.html
-message="This webpage is under construction - some links and pages will not yet work"
+message="Please note: All study pages are in development. Some links and pages will not yet work"
 status="is-info" %}
 
