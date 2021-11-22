@@ -1,5 +1,3 @@
-<script src="sweetalert2.all.min.js"></script>
-
 Swal.fire({
   icon: 'info',
   title: 'Working on it...',
