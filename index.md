@@ -10,3 +10,10 @@ Last update: 4 Aug 2021
 message="Please note: All study pages are in development. Some links and pages will not yet work"
 status="is-info" %}
 
+<script src="sweetalert2.all.min.js"></script>
+
+Swal.fire({
+  icon: 'info',
+  title: 'Working on it...',
+  text: 'These web pages are still being created. Some things might not work yet.'
+})
