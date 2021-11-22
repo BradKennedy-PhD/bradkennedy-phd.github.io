@@ -11,5 +11,4 @@ message="Please note: All study pages are in development. Some links and pages w
 status="is-info" %}
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.all.min.js"></script>
 <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script>
