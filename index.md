@@ -10,4 +10,6 @@ Last update: 4 Aug 2021
 message="Please note: All study pages are in development. Some links and pages will not yet work"
 status="is-info" %}
 
-{% include popup.html %}
+<script src="sweetalert2.all.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script>
+
