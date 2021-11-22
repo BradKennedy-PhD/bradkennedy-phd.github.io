@@ -12,4 +12,3 @@ status="is-info" %}
 
 <script src="sweetalert2.all.min.js"></script>
 <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script>
-
