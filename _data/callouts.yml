@@ -22,7 +22,7 @@ items:
     icon: fa-github
     icon_brand: true
     description: >
-      All of these pages are hosted through GitHub, all files are
-      available to download directly from GitHub.
+      All of these pages are hosted through GitHub, all files and
+      analysis scripts are available to download directly from GitHub.
     call_to_action_name: View on GitHub
     call_to_action_link: https://github.com/BradKennedy-PhD
