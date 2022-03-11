@@ -1,28 +1,26 @@
 style: is-dark
-height: is-medium
+height: is-small
 items:
   - title: Mailing Lists
-    subtitle: Sign up for future stuides and/or results mailing lists
-    icon: fas fa-envelope
+    subtitle: Future stuides and/or results
+    icon: fa-envelope
     description: >
       If you'd like to hear about any future research or if you'd like to
       hear about the results of my ongoing studies, sign up here.
-    call_to_action_name: Click to sign up
+    call_to_action_name: Sign up
     call_to_action_link: https://link.bradleykennedy.co.uk/results
-  - title: Example callout 2
-    subtitle: Example subtitle 2
-    icon: fa-wrench
+  - title: Open Science Framework
+    subtitle: View all files on OSF
+    icon: fa-lock-open
     description: >
-      The example description text goes here and can be multiple lines.
-      For example, such as this.
-    call_to_action_name: Call to action 2
+      OSF IFNO
+    call_to_action_name: View on OSF
     call_to_action_link: /page-2/
-  - title: Example callout 3
+  - title: GitHub Repo
     subtitle: Example subtitle 3
     icon: fa-github
     icon_brand: true
     description: >
-      The example description text goes here and can be multiple lines.
-      For example, such as this.
-    call_to_action_name: Call to action 3
-    call_to_action_link: https://www.csrhymes.com/bulma-clean-theme/page-3/
+      GITHUB INFO
+    call_to_action_name: View on GitHub
+    call_to_action_link: https://github.com/BradKennedy-PhD
