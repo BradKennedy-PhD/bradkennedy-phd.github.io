@@ -1,6 +1,7 @@
 ---
 title: Bradley Kennedy's PhD GitHub Pages
 subtitle: Browse each study and the related files
+hero_height: is-fullwidth
 hero_link: "https://github.com/BradKennedy-PhD"
 hero_link_text: "Explore on GitHub"
 callouts: callouts
