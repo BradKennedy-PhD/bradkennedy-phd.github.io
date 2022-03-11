@@ -3,6 +3,7 @@ title: Bradley Kennedy's PhD GitHub Pages
 subtitle: Browse each study and the related files
 hero_link: "https://github.com/BradKennedy-PhD"
 hero_link_text: "Explore on GitHub"
+callouts: callouts
 hide_footer: true
 ---
 Last update: 4 Aug 2021
