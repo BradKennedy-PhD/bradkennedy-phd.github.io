@@ -1,14 +1,14 @@
-style: is-light
+style: is-dark
 height: is-medium
 items:
-  - title: Example callout 1
-    subtitle: Example subtitle 1
-    icon: fa-space-shuttle
+  - title: Mailing Lists
+    subtitle: Sign up for future stuides and/or results mailing lists
+    icon: fas fa-envelope
     description: >
-      The example description text goes here and can be multiple lines.
-      For example, such as this. 
-    call_to_action_name: Call to action 1
-    call_to_action_link: /page-1/
+      If you'd like to hear about any future research or if you'd like to
+      hear about the results of my ongoing studies, sign up here.
+    call_to_action_name: Click to sign up
+    call_to_action_link: https://link.bradleykennedy.co.uk/results
   - title: Example callout 2
     subtitle: Example subtitle 2
     icon: fa-wrench
