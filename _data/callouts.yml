@@ -13,14 +13,16 @@ items:
     subtitle: View all files on OSF
     icon: fa-lock-open
     description: >
-      OSF IFNO
+      All studies are preregistered. Data, materials and analysis
+      code are available on the Open Science Framework.
     call_to_action_name: View on OSF
     call_to_action_link: /page-2/
   - title: GitHub Repo
-    subtitle: Example subtitle 3
+    subtitle: View all files on GitHub
     icon: fa-github
     icon_brand: true
     description: >
-      GITHUB INFO
+      All of these pages are hosted through GitHub, all files are
+      available to download directly from GitHub.
     call_to_action_name: View on GitHub
     call_to_action_link: https://github.com/BradKennedy-PhD
