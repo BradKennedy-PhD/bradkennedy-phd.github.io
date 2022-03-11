@@ -16,7 +16,7 @@ items:
       All studies are preregistered. Data, materials and analysis
       code are available on the Open Science Framework.
     call_to_action_name: View on OSF
-    call_to_action_link: /page-2/
+    call_to_action_link: https://osf.io/ekmyr/
   - title: GitHub Repo
     subtitle: View all files on GitHub
     icon: fa-github
