@@ -1,14 +1,17 @@
-- name: Pilot Study
-  link: /studies/pilot/
-- name: Replication
-  link: /studies/replication/
-- name: Study 1
-  link: /studies/study1/
-- name: Study 2
-  link: /studies/study2/
-- name: Study 3
-  link: /studies/study3/
-- name: Study 4
-  link: /studies/study4/
-- name: Study 5
-  link: /studies/study5/
+- name: Studies
+  link: /#
+  dropdown:
+    - name: Pilot Study
+      link: /studies/pilot/
+    - name: Replication
+      link: /studies/replication/
+    - name: Study 1
+      link: /studies/study1/
+    - name: Study 2
+      link: /studies/study2/
+    - name: Study 3
+      link: /studies/study3/
+    - name: Study 4
+      link: /studies/study4/
+    - name: Study 5
+      link: /studies/study5/
