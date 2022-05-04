@@ -4,7 +4,7 @@ let timerInterval
 Swal.fire({
   icon: 'info',
   title: 'Working on it...',
-  text: 'These web pages are still being created. Some things might not work yet.',
+  text: 'This site is being created. Some features might not work.',
   timer: 5000,
   timerProgressBar: true,
   willClose: () => {
