@@ -7,7 +7,7 @@ hide_footer: true
 ---
 ## Last update: 4 Aug 2021
 {% include notification.html
-message="Please note: Study pages are in development. Some links and pages may not yet work"
+message="Study pages are in development. Some links and features may not work"
 status="is-info" %}
 
 # Overview
