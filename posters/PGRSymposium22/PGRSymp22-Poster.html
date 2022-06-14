@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Exploring the side-effect effect.</title>
+
+
+
+
+
+
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Joan' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Rasa' rel='stylesheet'>
+
+<!--
+Here are the required style attributes for css to make this poster work :)
+-->
+<style>
+@page {
+size: 33.11in 46.81in;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0px;
+padding: 0px;
+width: 33.11in;
+height: 46.81in;
+text-align: justify;
+font-size: 45px;
+line-height: 1.05;
+}
+/* RMarkdown Class Styles */
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+margin: auto;
+margin-top: 1em;
+margin-bottom: 1em;
+/* align-items: center; */
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+background-color: #35a7e924;
+color: #1686c8;
+padding: 1.2mm;
+line-height: 1;
+border-radius: 2mm;
+}
+caption {
+margin-bottom: 10px;
+font-size: 20pt;
+font-style: italic;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #35a7e920;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+  border-spacing: 0;
+  font-size: 40%;
+  border-style: none;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 1em;
+  padding-left: 1em;
+  line-height: 1em;
+}
+table {
+  margin: auto;
+}
+th {
+  padding-left: 5mm;
+  padding-right: 5mm;
+}
+.caption {
+font-size: 20pt;
+font-style: italic;
+padding-top: 0;
+}
+.references {
+font-size: 22px;
+line-height: 90%;
+}
+/* Create three unequal columns that floats next to each other */
+.column {
+float: left;
+padding: 0px;
+}
+.outer {
+width: 33.11in;
+height: calc(46.81in *  (1 - 0.19 - 8.0e-2 - 0.01) );
+-webkit-column-count: 3; /* Chrome, Safari, Opera */
+-moz-column-count: 3; /* Firefox */
+column-count: 3;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+column-gap: 0;
+padding-left: 0cm;
+padding-right: 0cm;
+/* -webkit-column-rule-width: 50%;
+-moz-column-rule-width: 50%;
+column-rule-width: 50%; */
+-webkit-column-rule-style: none;
+-moz-column-rule-style: none;
+column-rule-style: none;
+-webkit-column-rule-color: black;
+-moz-column-rule-color: black;
+column-rule-color: black;
+background-color: #ffffff;
+font-family: Rasa;
+margin-top: calc(46.81in *  0.19 );
+padding-top: 1em;
+padding-bottom: 1em;
+}
+span.citation {
+  color: #35a7e9;
+  font-weight: bold;
+}
+a {
+text-decoration: none;
+color: #35a7e9;
+}
+#title {
+font-size: 105pt;
+text-align: left;
+margin: 0;
+line-height: 98%;
+border-bottom: 0;
+font-weight: normal;
+background: 0;
+}
+#author {
+color: #1686c8;
+margin: 0;
+line-height: 85%;
+font-size: 1.17em;
+}
+#affiliation {
+padding-top: 0.1em;
+color: ;
+font-style: italic;
+font-size: 25px;
+margin: 0;
+}
+sup {
+color: #cc0000;
+}
+.affiliation sup {
+font-size: 20px;
+}
+.author {
+text-align: left;
+}
+.author sup {
+font-size: 30px;
+}
+.author_extra {
+color: #35a7e9;
+margin: 0;
+line-height: 85%;
+font-size: 35px;
+text-align: left;
+}
+.outer h1, h2, h3, h4, h5, h6 {
+text-align: center;
+margin: 0;
+font-weight: bold;
+}
+.section h1 {
+  text-align:center;
+  padding-bottom:5px;
+  background:
+    linear-gradient(
+      to left,
+      #ffffff 1%,
+      #ffffff 20%,
+      #1686c875 33%,
+      #1686c8 50%,
+      #1686c875 66%,
+      #ffffff 80%,
+      #ffffff 99%
+    )
+    left
+    bottom
+    #ffffff
+    no-repeat;
+  background-size:100% 5px ;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.outer h2 {
+text-align: center;
+}
+.outer p, .level2 {
+color: #000000;
+}
+.outer ol {
+padding-left: 8%;
+padding-right: 8%;
+text-align: left;
+}
+.main {
+width: 33.11in;
+height: calc(46.81in * 0.19);
+position: absolute;
+background-color: #1686c8;
+color: #ffffff90;
+font-family: Joan;
+background-image: linear-gradient(#1686c8 50%,#35a7e9);
+}
+.main strong {
+color: #ffffff;
+}
+.main strong > sup {
+color: #ffffff;
+}
+.main sup {
+color: #ffffff90;
+}
+#main-img-left {
+width: 10%;
+left: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+#main-img-center {
+width: 10%;
+left: calc(33.11in * 0.45);
+bottom: 0.5in;
+position: absolute;
+}
+#main-img-right {
+width: 10%;
+right: 0.5in;
+bottom: 0.2in;
+position: absolute;
+}
+.main p {
+font-size: 150px;
+font-family: Joan;
+text-align: center;
+margin: 0;
+position: absolute;
+top: 50%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+margin-left: 1em;
+}
+.fab {
+color: #00000030;
+font-size: 25px;
+}
+.twitter, i {
+color: #00000030;
+font-size: 35px;
+text-decoration: none;
+}
+a.email {
+text-decoration: none;
+color: #00000030;
+font-size: 35px;
+}
+.envelope {
+color: #00000030;
+font-size: 5px;
+text-decoration: none;
+}
+.poster_wrap {
+width: 33.11in;
+height: 46.81in;
+padding: 0cm;
+}
+.main_bottom {
+width: 33.11in;
+height: calc(46.81in * 8.0e-2);
+margin-top: calc(46.81in * (1 - 8.0e-2));
+position: absolute;
+background-color: #1686c8;
+background-image: linear-gradient(#35a7e9 10%, #1686c8);
+}
+.section {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+span > #tab:mytable {
+  font-weight: bold;
+}
+.orcid img {
+  width: 3%;
+}
+.emphasis {
+  background-color: #008080;
+  color: #ffffff;
+  border: solid #0b2045 3mm;
+  margin: 1em;
+  padding-left: 0;
+  padding-right: 0;
+}
+.emphasis h1 {
+  font-weight: bold;
+  background: none;
+  background-color: #0b2045;
+  padding-bottom: 5mm;
+  padding-top: 1mm;
+  margin-top: -1mm;
+  margin-right: -1mm;
+  margin-left: -1mm;
+}
+.emphasis blockquote {
+  border: 0;
+}
+.emphasis ol {
+  padding: 0;
+  padding-left: 8%;
+  font-size: 100%;
+  font-weight: bold;
+}
+.emphasis p {
+  color: #ffffff;
+}
+</style>
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="column outer">
+<div class="section">
+<h1 id="title"><strong>Exploring the side-effect effect.</strong></h1><br>
+<h3 id="author" class="author">
+
+<strong>Bradley J. Kennedy</strong><sup> </sup><br>
+<a class="twitter" href="https://mobile.twitter.com/bradpsych"><i class="fab fa-twitter"></i>&nbsp;&nbsp;@bradpsych</a><br>
+
+<a class='envelope'><i class="fas fa-envelope"></i></a> <a href="mailto:b.kennedy@chester.ac.uk" class="email">b.kennedy@chester.ac.uk</a> <br>
+   </h3>
+
+<h5 id="author_extra", class="author_extra">
+ Dr. Annie Scudds,<sup></sup>
+ Prof. Moira Lafferty, &amp;<sup></sup>
+ Dr. Suzanne L. K. Stewart<sup></sup>
+</h5>
+
+
+<p id="affiliation" class="affiliation">
+<sup></sup> School of Psychology, University of Chester
+</p>
+</div>
+
+<style>
+#main-img-left {
+ width: 30%;
+}
+#main-img-center {
+ width: 10%;
+}
+#main-img-right {
+ width: 11%;
+}
+p.caption {
+ margin-top: 0;
+ margin-bottom: 0;
+}
+</style>
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p><span class="citation">Knobe (<a href="#ref-knobe2003" role="doc-biblioref">2003</a>)</span> showed that people are more likely to say that <span style="color:red">harmful</span> side effects are brought about <em>intentionally</em> when compared with <span style="color:green">helpful</span> side effects. Furthermore, people assign <em>more blame</em> for <span style="color:red">harmful</span> side effects than they do <em>praise</em> for <span style="color:green">helpful</span> side effects. Observers appear to utilise the moral valence of actions’ unintended consequences to determine intentionality, and deserved praise and blame.</p>
+<p>Previous work has demonstrated that character descriptions can moderate the side-effect effect <span class="citation">(SEE; Stewart et al. <a href="#ref-stewart2021" role="doc-biblioref">2021</a>)</span> such that participants’ responses can be influenced by the incongruency between the agent’s character and the outcome of their actions.</p>
+<p>The current research investigates whether varying more fine-grain specific agent traits moderates the SEE in a similar manner.</p>
+</div>
+<div id="replication-of-the-see" class="section level1">
+<h1>Replication of the SEE</h1>
+<p><strong>Replication in a UK Sample:</strong><br />
+More <em>blame</em> (𝑀=4.80, 𝑆𝐷=1.35) in <span style="color:red"><em>harm</em></span> condition (86% said intentional, <em>p</em> &lt; .001)<br />
+Little <em>praise</em> (𝑀=2.11, 𝑆𝐷=1.74) in <span style="color:green"><em>help</em></span> condition (93% said not intentional, <em>p</em> &lt; .001)</p>
+<p>Difference highly significant 𝜒2 (1,<em>N</em>=88)=29.9, <em>p</em>&lt;.001, <em>d</em>=1.43 95% CI [0.92, 1.95]<br />
+Larger effect sizes than original (Replication: <em>d</em> = 2.45 &amp; <em>d</em> = 1.70; Original: <em>d</em> = 1.45 &amp; <em>d</em> = 1.55)</p>
+<p><strong>Vignette example:</strong></p>
+<blockquote>
+<p>The vice-president of a company went to the chairman of the board and said, ‘We are thinking of starting a new program. It will help us increase profits, and (<em>but</em>) it will also help (<em>harm</em>) the environment.’ The chairman of the board answered, ‘I don’t care at all about helping (<em>harming</em>) the environment. I just want to make as much profit as I can. Let’s start the new program.’ They started the new program. Sure enough, the environment was helped (<em>harmed</em>). - <span class="citation">Knobe (<a href="#ref-knobe2003" role="doc-biblioref">2003</a>)</span></p>
+</blockquote>
+<ul>
+<li>How much praise (<em>blame</em>) does the chairman deserve for what he did? (0-6; None-Lots)</li>
+<li>Did the chairman intentionally help (<em>harm</em>) the environment? (Yes/No)</li>
+</ul>
+</div>
+<div id="pilot-study" class="section level1">
+<h1>Pilot Study</h1>
+<p>In order to develop vignettes for other experiments, this online study examined current social perceptions of a variety of job roles and sectors of work.<br />
+<strong>Example Variables:</strong><br />
+<em>Jobs:</em> Cleaner, Bus Driver, Pilot, Head Teacher, CEO<br />
+<em>Sectors:</em> Health, Military, Media, Government<br />
+<em>Characteristics:</em> Powerful, Trustworthy, Honest, Skillful</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figure1"></span>
+<img src="figures/Powerfulness.jpeg" alt="Ratings of Powerfulness for a selection of Job roles" width="100%" />
+<p class="caption">
+Figure 1: Ratings of Powerfulness for a selection of Job roles
+</p>
+</div>
+<p>Explore the interactive results of the pilot study: <a href="https://apps.bradk.co.uk/pilotdata">apps.bradk.co.uk/pilotdata</a></p>
+</div>
+<div id="the-job-role-of-the-agent" class="section level1">
+<h1>The Job Role of the Agent</h1>
+<p><strong>Overview:</strong> It was considered that the Chairman/CEO character in the original Knobe (2003) study was influencing participants’ decision making as the job role has the stereotype/prototype of large amounts of control and responsibility.Using pilot data, 64 novel vignettes were developed utilising the most prominently featured job roles from the pilot study.<br />
+This study followed a similar paradigm as the Knobe (2003) study but modified the intention question response system to match the Likert 0-6 response on praise/blame question. This modification allowed the use of Cumulative Link Mixed Models (CLMMs) for analysis.<br />
+<strong>Vignette modification:</strong> Job role was used twice in the vignette and once within each question. E.g. “A supermarket manager / shelf stacker is considering changing…”<br />
+<strong>Result:</strong> <em>N</em> = 100. The model showed the typical SEE was present in all conditions (<em>p</em> &lt; .001). However, the agent’s <span style="color:red">job role did not significantly moderate the SEE</span> in neither praise/blame ratings (<em>p</em> = .823) nor intention ratings (<em>p</em> = .472).</p>
+</div>
+<div id="the-sex-of-the-agent" class="section level1">
+<h1>The Sex of the Agent</h1>
+<p><strong>Overview:</strong> To further investigate the influence of the agent characteristics, the aim of this study was to manipulate the vignettes by modifying the sex of the agent.<br />
+<strong>Vignette modification:</strong> A gendered name and pronouns were used twice each in the vignette E.g. “Oliver/Emma is a supermarket manager and he/she is considering changing …”. The name was also used in both the intention and praise/blame questions.<br />
+<strong>Result:</strong> <em>N</em> = 100. The model showed the SEE was present in all conditions (<em>p</em> &lt; .001). However, the <span style="color:red">sex of the agent did not significantly moderate the SEE</span> in neither praise/blame ratings (<em>p</em> = .803) nor intention ratings (<em>p</em> = .619).</p>
+</div>
+<div id="the-power-of-the-agent" class="section level1">
+<h1>The Power of the Agent</h1>
+<p><strong>Overview:</strong> Research has shown that the level of power the agent possess (as a result of their position; chief/commoner) impacts the SEE <span class="citation">(<a href="#ref-robbins2017" role="doc-biblioref">Robbins et al., 2017</a>)</span>. To investigate this further, the level of power was modified to be more salient and not just inferred as a result of a job role.<br />
+<strong>Vignette modification:</strong> “A supermarket manager is considering changing the layout of the aisles. The manager is very/not very powerful and has lots of/little influence with the chain’s management board.”</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:figure2"></span>
+<img src="figures/pb-plot.png" alt="Distribution of Blame (Purple) and Praise (Green) ratings for Helpful/Harmful outcomes by level of Power" width="100%" />
+<p class="caption">
+Figure 2: Distribution of Blame (Purple) and Praise (Green) ratings for Helpful/Harmful outcomes by level of Power
+</p>
+</div>
+<p><strong>Result:</strong> The <span style="color:green"><strong>agent’s level of power moderated the SEE</strong></span>, such that those with less power were judged to deserve more blame for their actions than those with high levels of power, for harmful side-effects. * <em>p</em> = .0017</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next Steps…</h1>
+<p>Future work will investigate how participants utilise information about agents’ power to understand the results, for example, the possible role of norm violations and participants’ own view of cost-benefit analyses. To investigate further, a larger and more diverse sample using Prolific recruitment will be used.<br />
+Understanding the SEE has applications to real world affairs that include jury decision making, business/brand image, product marketing and advertisement.<br />
+Find out more and/or get future updates by scanning the QR code below or visit: <a href="https://bradk.co.uk/see">bradk.co.uk/see</a></p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-rmarkdown" class="csl-entry">
+Allaire, J., Xie, Y., McPherson, J., Luraschi, J., Ushey, K., Atkins, A., Wickham, H., Cheng, J., Chang, W., &amp; Iannone, R. (2022). <em>Rmarkdown: Dynamic documents for r</em>. <a href="https://CRAN.R-project.org/package=rmarkdown">https://CRAN.R-project.org/package=rmarkdown</a>
+</div>
+<div id="ref-knobe2003" class="csl-entry">
+Knobe, J. (2003). Intentional action and side effects in ordinary language. <em>Analysis</em>, <em>63</em>(3), 190–194. <a href="https://doi.org/10.1093/analys/63.3.190">https://doi.org/10.1093/analys/63.3.190</a>
+</div>
+<div id="ref-robbins2017" class="csl-entry">
+Robbins, E., Shepard, J., &amp; Rochat, P. (2017). Variations in judgments of intentional action and moral evaluation across eight cultures. <em>Cognition</em>, <em>164</em>, 22–30. <a href="https://doi.org/10.1016/j.cognition.2017.02.012">https://doi.org/10.1016/j.cognition.2017.02.012</a>
+</div>
+<div id="ref-stewart2021" class="csl-entry">
+Stewart, S. L. K., Kennedy, B. J., &amp; Haigh, M. (2021). Valence of agents and recipients moderates the side-effect effect: Two within-subjects, multi-item conceptual replications. <em>Journal of Cognitive Psychology</em>, <em>34</em>(2), 289–306. <a href="https://doi.org/10.1080/20445911.2021.1971234">https://doi.org/10.1080/20445911.2021.1971234</a>
+</div>
+<div id="ref-R-posterdown" class="csl-entry">
+Thorne, B. (2019). <em>Posterdown: Generate PDF conference posters using r markdown</em>. <a href="https://github.com/brentthorne/posterdown">https://github.com/brentthorne/posterdown</a>
+</div>
+</div>
+</div>
+
+</div>
+<div class="main">
+<p>For harmful side-effects, people with <strong>less power</strong> are judged to deserve <strong>more blame</strong> than those with higher power.</p>
+</div>
+<div class="main_bottom">
+<img id="main-img-left" src=figures/Chester_Crest.png>
+<img id="main-img-center" src=>
+<img id="main-img-right" src=figures/qr.png>
+</div>
+</div>
+
+
+
+</body>
+</html>
