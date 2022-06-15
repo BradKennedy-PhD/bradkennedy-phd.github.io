@@ -62,7 +62,7 @@ knitr::write_bib(c('posterdown', 'rmarkdown','pagedown'), 'packages.bib')
  width: 10%;
 }
 #main-img-right {
- width: 11%;
+ width: 10%;
 }
 p.caption {
  margin-top: 0;
@@ -74,15 +74,15 @@ p.caption {
 
 @knobe2003 showed that people are more likely to say that [harmful]{style="color:red"} side effects are brought about *intentionally* when compared with [helpful]{style="color:green"} side effects. Furthermore, people assign *more blame* for [harmful]{style="color:red"} side effects than they do *praise* for [helpful]{style="color:green"} side effects. Observers appear to utilise the moral valence of actions' unintended consequences to determine intentionality, and deserved praise and blame.
 
-Previous work has demonstrated that character descriptions can moderate the side-effect effect [SEE\; Stewart et al. -@stewart2021] such that participants' responses can be influenced by the incongruency between the agent's character and the outcome of their actions.
+Previous work has demonstrated that character descriptions can moderate the side-effect effect [SEE\; Stewart et al. -@stewart2021] such that participants' responses can be influenced by the congruency between the agent's character and the outcome of their actions.
 
-The current research investigates whether varying more fine-grain specific agent traits moderates the SEE in a similar manner.
+The current research investigates whether varying more fine-grained specific agent traits moderates the SEE in a similar manner.
 
 # Replication of the SEE
 
 **Replication in a UK Sample:**\
-More *blame* (𝑀=4.80, 𝑆𝐷=1.35) in [*harm*]{style="color:red"} condition (86% said intentional, *p* \< .001)\
-Little *praise* (𝑀=2.11, 𝑆𝐷=1.74) in [*help*]{style="color:green"} condition (93% said not intentional, *p* \< .001)
+More *blame* (𝑀=4.80, 𝑆𝐷=1.35) in [*harm*]{style="color:red"} condition, 86% said intentional *p* \< .001\
+Little *praise* (𝑀=2.11, 𝑆𝐷=1.74) in [*help*]{style="color:green"} condition, 93% said not intentional *p* \< .001
 
 Difference highly significant 𝜒2 (1,*N*=88)=29.9, *p*\<.001, *d*=1.43 95% CI [0.92, 1.95]\
 Larger effect sizes than original (Replication: *d* = 2.45 & *d* = 1.70; Original: *d* = 1.45 & *d* = 1.55)
@@ -110,20 +110,20 @@ Explore the interactive results of the pilot study: [apps.bradk.co.uk/pilotdata]
 
 # The Job Role of the Agent
 
-**Overview:** It was considered that the Chairman/CEO character in the original Knobe (2003) study was influencing participants' decision making as the job role has the stereotype/prototype of large amounts of control and responsibility.Using pilot data, 64 novel vignettes were developed utilising the most prominently featured job roles from the pilot study.\
+**Overview:** It was considered that the Chairman/CEO character in the original Knobe (2003) study was influencing participants' decision making as the job role has the stereotype/prototype of large amounts of control and responsibility. Using pilot data, 64 novel vignettes were developed utilising the most prominently featured job roles from the pilot study.\
 This study followed a similar paradigm as the Knobe (2003) study but modified the intention question response system to match the Likert 0-6 response on praise/blame question. This modification allowed the use of Cumulative Link Mixed Models (CLMMs) for analysis.\
 **Vignette modification:** Job role was used twice in the vignette and once within each question. E.g. "A supermarket manager / shelf stacker is considering changing..."\
-**Result:** *N* = 100. The model showed the typical SEE was present in all conditions (*p* \< .001). However, the agent's [job role did not significantly moderate the SEE]{style="color:red"} in neither praise/blame ratings (*p* = .823) nor intention ratings (*p* = .472).
+**Result:** *N* = 100. The model showed the typical SEE was present in all conditions (*p* \< .001). However, the agent's [job role did not moderate the SEE]{style="color:red"} in praise/blame ratings (*p* = .823) and intention ratings (*p* = .472).
 
 # The Sex of the Agent
 
 **Overview:** To further investigate the influence of the agent characteristics, the aim of this study was to manipulate the vignettes by modifying the sex of the agent.\
 **Vignette modification:** A gendered name and pronouns were used twice each in the vignette E.g. "Oliver/Emma is a supermarket manager and he/she is considering changing ...". The name was also used in both the intention and praise/blame questions.\
-**Result:** *N* = 100. The model showed the SEE was present in all conditions (*p* \< .001). However, the [sex of the agent did not significantly moderate the SEE]{style="color:red"} in neither praise/blame ratings (*p* = .803) nor intention ratings (*p* = .619).
+**Result:** *N* = 100. The model showed the SEE was present in all conditions (*p* \< .001). However, the [sex of the agent did not moderate the SEE]{style="color:red"} in praise/blame ratings (*p* = .803) and intention ratings (*p* = .619).
 
 # The Power of the Agent
 
-**Overview:** Research has shown that the level of power the agent possess (as a result of their position; chief/commoner) impacts the SEE [@robbins2017]. To investigate this further, the level of power was modified to be more salient and not just inferred as a result of a job role.\
+**Overview:** Research has shown that the level of power the agent possesses (as a result of their position; chief/commoner) impacts the SEE [@robbins2017]. To investigate this further, the level of power was modified to be more salient and not just inferred as a result of a job role.\
 **Vignette modification:** "A supermarket manager is considering changing the layout of the aisles. The manager is very/not very powerful and has lots of/little influence with the chain's management board."
 
 ```{r figure2, fig.cap='Distribution of Blame (Purple) and Praise (Green) ratings for Helpful/Harmful outcomes by level of Power'}
@@ -135,7 +135,9 @@ knitr::include_graphics("figures/pb-plot.png")
 # Next Steps...
 
 Future work will investigate how participants utilise information about agents' power to understand the results, for example, the possible role of norm violations and participants' own view of cost-benefit analyses. To investigate further, a larger and more diverse sample using Prolific recruitment will be used.\
+
 Understanding the SEE has applications to real world affairs that include jury decision making, business/brand image, product marketing and advertisement.\
+
 Find out more and/or get future updates by scanning the QR code below or visit: [bradk.co.uk/see](https://bradk.co.uk/see)
 
 # References
