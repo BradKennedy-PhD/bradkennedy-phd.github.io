@@ -1,0 +1,222 @@
+---
+title: "Study 1"
+author: "Bradley Kennedy"
+date: "21/04/2020"
+output:
+  html_document:
+    code_folding: show
+    toc: yes
+    toc_float:
+      collapsed: no
+subtitle: Investigating the influence of the agent's Job Role on the Side-Effect Effect
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Study Information
+This preregistered study was a lab-based study that investigated how intention is viewed. That is, whether or not an action was planned. Additionally, it investigated how much particular actions deserve praise or blame. 
+
+In the study, vignettes were presented to participants. These vignettes varied with high- and low-ranking job roles of the main character. Additionally, the side-effect was varied between helpful and harmful. For example vignettes, see the OSF repository.
+
+The study was conducted through [SuperLab 5](https://cedrus.com/superlab/index.htm) so that the question lists could be randomised for each participant. Participants read 32 vignettes and responded to two questions per vignette. First, they rated to what extent they believed an action was intentional, secondly they rated the amount of praise or blame deserved for the action. Both of these were rated using a 7-point Likert scale from 0 (Not at all) to 6 (Very much). The participants responded on a [Cedrus RB-740 keypad](https://cedrus.com/rb_series/).
+
+Preregistration, materials, analysis code and a copy of the anonymised data will be made publically available on the Open Science Framework, links below.
+
+OSF Repository: <https://osf.io/kncea/>  
+OSF Preregistration: <https://osf.io/zat74>
+
+# R Set-up
+Current R Version: `r getRversion()`
+
+Check if required packages need to be installed, if so, install
+```{r install packages, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+list_of_packages<-c("tidyr","reader","readr","dplyr","psych","ggplot2","Hmisc","ordinal","emmeans","plyr","tidyverse","here")
+new.packages <- 
+  list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+if(length(new.packages))install.packages(new.packages)
+
+lapply(list_of_packages, library, character.only = TRUE)
+```
+
+Check for package updates from cloud.r-project.org
+```{r update packages, results='hide', warning=FALSE, message=FALSE}
+update.packages(ask=FALSE, repos = "https://cloud.r-project.org")
+```
+
+Import Data & Set variables
+```{r import data, results='hide', warning=FALSE, message=FALSE}
+all <- read_csv(here("Wrangling","Cleaned_data.csv"))
+
+# Plot data set-up
+PlotData <- all
+PlotData$Condition <- PlotData$Condition %>% 
+  as.factor() %>% 
+  revalue(c("HE"="Helpful", "HA"="Harmful"))
+PlotData$Job_ranking <- PlotData$Job_ranking %>% 
+  as.factor() %>% 
+  revalue(c("low"="Low rank", "high"="High rank"))
+
+all$ID <- as.factor(all$ID)
+all$Age <- as.numeric(all$Age)
+all$Sex <- tolower(all$Sex)
+all$Sex <- as.factor(all$Sex)
+all$StaffStudent <- as.factor(all$StaffStudent)
+all$Condition <- as.factor(all$Condition)
+all$Intention_rating <- as.ordered(all$Intention_rating)
+all$PB_rating <- as.ordered(all$PB_rating)
+all$Job_ranking <- as.factor(all$Job_ranking)
+all$Item <- as.factor(all$Item)
+```
+
+# Participant Descriptives
+The mean age of all participants is `r mean(all$Age)` and the standard deviation `r round(sd(all$Age),2)`.
+
+# Analysis
+## Cumulative Link Mixed Models 
+Christensen, R. H. B. (2019). ordinal - Regression Models for Ordinal Data. R package version 2019.12-10. https://CRAN.R-project.org/package=ordinal.
+
+This centres the fixed factors using deviation coding
+```{r deviation coding}
+contrasts(all$Condition) <- matrix(c(.5, -.5)) 
+contrasts(all$Job_ranking) <- matrix(c(.5, -.5))
+```
+
+### Praise Blame Model
+DV is `PB_rating` which is the Likert scale response of assigning degree of Praise or Blame (0 to 6)
+`Job_ranking` is the Agent's Job ranking experimental factor (levels low & high)
+`Condition` is the Side Effect Valence experimental factor (level HE = helpful; level HA = harmful)
+```{r pb model, cache=TRUE}
+PB_model <- clmm(PB_rating ~ Condition * Job_ranking + (1 + Condition * Job_ranking|ID) + 
+                   (1 + Condition * Job_ranking|Item), data = all)
+
+summary(PB_model)
+```
+This produces the pairwise comparisons for the Praise Blame Model for the interaction of the Agent's Job ranking (`Job_ranking`) and Side Effect Valence (`Condition`)
+```{r comparisons pb model, cache=TRUE}
+emmeans(PB_model, pairwise ~ Job_ranking * Condition, adjust = "none")
+```
+This produces the confidence intervals for the main effects and the interction for the Praise Blame Model
+```{r conf int pb model, cache=TRUE}
+confint(PB_model)
+```
+
+### Intentionality Model
+DV is `Intention_rating` which is the Likert scale response of assigning degree of Intentionality (0 to 6)
+`Job_ranking` is the Agent's Job ranking experimental factor (levels low & high)
+`Condition` is the Side Effect Valence experimental factor (level HE = helpful; level HA = harmful)
+```{r int model, cache=TRUE}
+Int_model <- clmm(Intention_rating ~ Condition * Job_ranking + (1 + Condition * Job_ranking|ID) + 
+                    (1 + Condition * Job_ranking|Item), data = all)
+
+summary(Int_model)
+```
+This produces the pairwise comparisons for the Intentionality Model for the interaction of Job ranking (Job_ranking) and Side Effect Valence (Condition)
+```{r compairsons int model, cache=TRUE}
+emmeans(Int_model, pairwise ~ Job_ranking * Condition, adjust = "none")
+```
+This produces the confidence intervals for the main effects and the interaction for the Blame Praise Model
+```{r conf int int model, cache=TRUE}
+confint(Int_model)
+```
+
+### Null models
+```{r null models, cache=TRUE}
+PB_null <- clmm(PB_rating ~ 1 + (1 + Job_ranking * Condition | ID) + 
+                  (1 + Job_ranking * Condition | Item), 
+                data = all)
+
+Int_null <- clmm(PB_rating ~ 1 + (1 + Job_ranking * Condition | ID) + 
+                   (1 + Job_ranking * Condition | Item), 
+                 data = all)
+# Comparisons with null models
+anova(PB_null, PB_model)
+anova(Int_null, Int_model)
+```
+
+### Main Effects Models 
+Models showing the main effects of the Agent's Job valence and Side-Effect valence only (but no interaction) for each of Praise/Blame and then Intentionality.
+Each model is immediately followed by a comparison of the main-effects only model with the final model (that includes the interaction).
+```{r pb&int main effects model, cache=TRUE}
+PB_model_main <- clmm(PB_rating ~ Job_ranking + Condition + 
+                        (1 + Job_ranking + Condition | ID) + 
+                   (1 + Job_ranking + Condition | Item), data = all)
+summary(PB_model_main)
+anova(PB_model_main, PB_model)
+
+Int_model_main_reduced <- clmm(Intention_rating ~ Job_ranking + Condition + 
+                         (1 + Job_ranking + Condition | ID), data = all)
+
+Int_tocompare <- clmm(Intention_rating ~ Condition * Job_ranking + 
+                        (1 + Condition * Job_ranking|ID), data = all)
+
+summary(Int_model_main_reduced)
+anova(Int_model_main_reduced, Int_tocompare)
+```
+
+# Raincloud Plot
+
+### Praise Blame Raincloud
+```{r praise blame raincloud plot}
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+raincloud_theme = theme(text = element_text(size = 12), 
+                        axis.title.x = element_text(size = 12), 
+                        axis.title.y = element_text(size = 12), 
+                        axis.text = element_text(size = 12), 
+                        axis.text.x = element_text(vjust = 0.5), 
+                        legend.title=element_text(size=12), 
+                        legend.text=element_text(size=12), 
+                        legend.position = "right", 
+                        plot.title = element_text(lineheight=.8, face="bold", size = 16), 
+                        panel.border = element_blank(), 
+                        panel.grid.minor = element_blank(), 
+                        panel.grid.major = element_blank(), 
+                        axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'), 
+                        axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))
+
+PB_Rain <- ggplot(data = PlotData, 
+                 aes(y = PB_rating, x = Condition:Job_ranking, fill = Job_ranking)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = PB_rating, color = Job_ranking), 
+             position = position_jitter(width = .10), size = .5, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + 
+  raincloud_theme + 
+  labs(x="Side Effect Valence * Job Ranking") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + ylab("Praise/Blame Rating") + 
+  stat_summary(fun.data="mean_cl_boot", colour="black", size=.5)
+PB_Rain
+```
+
+### Intention Raincloud
+```{r intention raincloud plot}
+Int_Rain <- ggplot(data = PlotData, 
+                 aes(y = Intention_rating, x = Condition:Job_ranking, fill = Job_ranking)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Intention_rating, color = Job_ranking), 
+             position = position_jitter(width = .10), size = .5, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + 
+  raincloud_theme + 
+  labs(x="Side Effect Valence * Job Ranking") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + ylab("Intention Rating") + 
+  stat_summary(fun.data="mean_cl_boot", colour="black", size=.5)
+Int_Rain
+```
+
+# Research Team
+
+This research was conducted by [Bradley Kennedy](https://bradk.co.uk)  
+Principal Supervisor: Dr Suzanne L. K. Stewart  
+Supervision Team: Dr Annie Scudds & Professor Moira Lafferty  
+
+<img src="https://dl.dropboxusercontent.com/s/m56n0tfcbwbtgid/UoC%20School%20of%20Psychology%201.jpg" width="60%">  
+
