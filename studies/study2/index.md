@@ -47,7 +47,7 @@ Link to dataset here
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study1/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study2/analysis');
         const data = await response.json();
         renderList1(data);
       })()
@@ -84,7 +84,7 @@ Link to dataset here
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study1/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study2/analysis');
         const data = await response.json();
         renderList2(data);
       })()
