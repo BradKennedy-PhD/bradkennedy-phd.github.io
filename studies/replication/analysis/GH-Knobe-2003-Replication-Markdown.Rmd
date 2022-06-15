@@ -1,0 +1,385 @@
+---
+title: "Knobe (2003) Replication Analysis"
+author: "Bradley Kennedy"
+date: "09/10/2019"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Current R Version:
+```{r, echo=FALSE}
+version$version.string
+```
+Check if required packages need to be installed, if so, install
+```{r install packages, results='hide', warning=FALSE, message=FALSE, error=FALSE}
+if (!require("readxl")) install.packages("readxl"); library(readxl)
+if (!require("plyr")) install.packages("plyr"); library(plyr)
+if (!require("tidyr")) install.packages("tidyr"); library(tidyr)
+if (!require("reshape2")) install.packages("reshape2"); library(reshape2)
+if (!require("polycor")) install.packages("polycor"); library(polycor)
+if (!require("corrgram")) install.packages("corrgram"); library(corrgram)
+if (!require("esc")) install.packages("esc"); library(esc)
+if (!require("psych")) install.packages("psych"); library(psych)
+if (!require("lsr")) install.packages("lsr"); library(lsr)
+if (!require("ggplot2")) install.packages("ggplot2"); library(ggplot2)
+if (!require("dplyr")) install.packages("dplyr"); library(dplyr)
+if (!require("Hmisc")) install.packages("Hmisc"); library(Hmisc)
+if (!require("rcompanion")) install.packages("rcompanion"); library(rcompanion)
+if (!require("beepr")) install.packages("beepr"); library(beepr)
+```
+Check for package updates from cloud.r-project.org
+```{r update packages, results='hide', warning=FALSE, message=FALSE, error=FALSE}
+update.packages(ask=FALSE, repos = "https://cloud.r-project.org")
+```
+
+***
+## Data Wrangling
+Import the original data file
+```{r import data, warning=FALSE, message=FALSE, error=FALSE}
+Data_forCleaning <- read_excel("Data_forCleaning.csv", 
+                               col_types = c("text", "text", "text", 
+                                             "numeric", "text", "numeric", "text", 
+                                             "numeric", "text", "numeric", "text"))
+```
+Demographic information
+```{r}
+All_Age <- describe(as.numeric(Data_forCleaning$`4. Please enter your age`))
+sd(as.numeric(Data_forCleaning$`4. Please enter your age`), na.rm = TRUE)
+
+Age_bySexIdentity <- describeBy(as.numeric(Data_forCleaning$`4. Please enter your age`),
+            group = as.factor(Data_forCleaning$`3. Please enter your gender identity`))
+```
+Seperate each experimental condition into a seperate dataframe, removing any lines with NA, renaming column names
+```{r data wrangling 1}
+Exp1_Harm <- select(Data_forCleaning, 4:5)
+Exp1_Harm <- na.omit(Exp1_Harm)
+names(Exp1_Harm) <- c("Chairman_HA_Blame", "Chairman_HA_Intent")
+Exp1_Help <- select(Data_forCleaning, 6:7)
+Exp1_Help <- na.omit(Exp1_Help)
+names(Exp1_Help) <- c("Chairman_HE_Praise", "Chairman_HE_Intent")
+Exp2_Harm <- select(Data_forCleaning, 8:9)
+Exp2_Harm <- na.omit(Exp2_Harm)
+names(Exp2_Harm) <- c("Lieutenant_HA_Blame", "Lieutenant_HA_Intent")
+Exp2_Help <- select(Data_forCleaning, 10:11)
+Exp2_Help <- na.omit(Exp2_Help)
+names(Exp2_Help) <- c("Lieutenant_HE_Praise", "Lieutenant_HE_Intent")
+```
+Convert yes no responses to Yes=1 and No=0
+```{r data wrangling 2, warning=FALSE}
+Exp1_Harm <- mutate_at(Exp1_Harm, vars(2:2), funs(ifelse( . == "Yes",1 , ifelse( . == "No", 0, .))))
+Exp1_Harm <- transform(Exp1_Harm, Chairman_HA_Intent = as.numeric(Chairman_HA_Intent))
+Exp1_Help <- mutate_at(Exp1_Help, vars(2:2), funs(ifelse( . == "Yes",1 , ifelse( . == "No", 0, .))))
+Exp1_Help <- transform(Exp1_Help, Chairman_HE_Intent = as.numeric(Chairman_HE_Intent))
+Exp2_Harm <- mutate_at(Exp2_Harm, vars(2:2), funs(ifelse( . == "Yes",1 , ifelse( . == "No", 0, .))))
+Exp2_Harm <- transform(Exp2_Harm, Lieutenant_HA_Intent = as.numeric(Lieutenant_HA_Intent))
+Exp2_Help <- mutate_at(Exp2_Help, vars(2:2), funs(ifelse( . == "Yes",1 , ifelse( . == "No", 0, .))))
+Exp2_Help <- transform(Exp2_Help, Lieutenant_HE_Intent = as.numeric(Lieutenant_HE_Intent))
+```
+
+***
+
+## Descriptive Statistics - INTENT - Experiment 1
+
+Harm Condition (How many said Yes, it was intentional)
+```{r}
+Sum_Yes_Exp1HA <- sum(Exp1_Harm[,2]==1)
+Percentage_Yes_Exp1HA <- round((Sum_Yes_Exp1HA/44)*100)
+Sum_Yes_Exp1HA
+Percentage_Yes_Exp1HA
+```
+Harm Condition (How many said No, it was NOT intentional)
+```{r}
+Sum_No_Exp1HA <- sum(Exp1_Harm[,2]==0)
+Percentage_No_Exp1HA <- round((Sum_No_Exp1HA/44)*100)
+Sum_No_Exp1HA
+Percentage_No_Exp1HA
+```
+Help Condition (How many said Yes, it was intentional)
+```{r}
+Sum_Yes_Exp1HE <- sum(Exp1_Help[,2]==1)
+Percentage_Yes_Exp1HE <- round((Sum_Yes_Exp1HE/44)*100)
+Sum_Yes_Exp1HE
+Percentage_Yes_Exp1HE
+```
+Help Condition (How many said No, it was NOT intentional)
+```{r}
+Sum_No_Exp1HE <- sum(Exp1_Help[,2]==0)
+Percentage_No_Exp1HE <- round((Sum_No_Exp1HE/44)*100)
+Sum_No_Exp1HE
+Percentage_No_Exp1HE
+```
+
+## Descriptive Statistics - INTENT - Experiment 2
+
+Harm Condition (How many said Yes, it was intentional)
+```{r}
+Sum_Yes_Exp2HA <- sum(Exp2_Harm[,2]==1)
+Percentage_Yes_Exp2HA <- round((Sum_Yes_Exp2HA/44)*100)
+Sum_Yes_Exp2HA
+Percentage_Yes_Exp2HA
+```
+Harm Condition (How many said No, it was NOT intentional)
+```{r}
+Sum_No_Exp2HA <- sum(Exp2_Harm[,2]==0)
+Percentage_No_Exp2HA <- round((Sum_No_Exp2HA/44)*100)
+Sum_No_Exp2HA
+Percentage_No_Exp2HA
+```
+Help Condition (How many said Yes, it was intentional)
+```{r}
+Sum_Yes_Exp2HE <- sum(Exp2_Help[,2]==1)
+Percentage_Yes_Exp2HE <- round((Sum_Yes_Exp2HE/44)*100)
+Sum_Yes_Exp2HE
+Percentage_Yes_Exp2HE
+```
+Help Condition (How many said No, it was NOT intentional)
+```{r}
+Sum_No_Exp2HE <- sum(Exp2_Help[,2]==0)
+Percentage_No_Exp2HE <- round((Sum_No_Exp2HE/44)*100)
+Sum_No_Exp2HE
+Percentage_No_Exp2HE
+```
+
+***
+## Chi Square Tests
+
+Data Prep for Chi Square, moving sum of 'Yes' and sum of 'No' for Exp 1 to seperate table
+```{r}
+Exp1_Intent <- matrix(c(Sum_Yes_Exp1HA,Sum_Yes_Exp1HE,Sum_No_Exp1HA,Sum_No_Exp1HE), ncol=2)
+colnames(Exp1_Intent) <- c('Harm', 'Help')
+rownames(Exp1_Intent) <- c('Yes','No')
+```
+Data Prep for Chi Square, moving sum of 'Yes' for Exp 2 to seperate table
+```{r}
+Exp2_Intent <- matrix(c(Sum_Yes_Exp2HA,Sum_Yes_Exp2HE,Sum_No_Exp2HA,Sum_No_Exp2HE), ncol=2)
+colnames(Exp2_Intent) <- c('Harm', 'Help')
+rownames(Exp2_Intent) <- c('Yes','No')
+```
+Chi Square, test difference between response for Exp1
+```{r}
+chisq.exp1 <- chisq.test(Exp1_Intent)
+chisq.exp1
+esc_chisq(chisq = chisq.exp1$statistic,p=chisq.exp1$p.value,totaln = 88 ,es.type = "d")
+```
+Chi Square, test difference between response for Exp2
+```{r}
+chisq.exp2 <- chisq.test(Exp2_Intent)
+chisq.exp2
+esc_chisq(chisq = chisq.exp2$statistic,p=chisq.exp2$p.value,totaln = 88,es.type = "d")
+```
+
+## Descriptive Statistics - PRAISE/BLAME
+
+Mean amount of Blame for Harmful SE
+```{r}
+Mean_Blame <- round(mean(c(Exp1_Harm[,1],Exp2_Harm[,1])),digits=2)
+Mean_Blame
+```
+SD Blame for Harmful SE
+```{r}
+SD_Blame <- sd(c(Exp1_Harm[,1],Exp2_Harm[,1]))
+SD_Blame
+```
+Mean amount of Praise for Helpful SE
+```{r}
+Mean_Praise <- round(mean(c(Exp1_Help[,1],Exp2_Help[,1])),digits=2)
+Mean_Praise
+```
+SD Praise for Helpful SE
+```{r}
+SD_Praise <- sd(c(Exp1_Help[,1],Exp2_Help[,1]))
+SD_Praise
+```
+
+Create one table of all
+```{r}
+All_table <- table(c(Exp1_Harm[,1],Exp1_Help[,1],Exp2_Harm[,1],Exp2_Help[,1]),
+                   c(Exp1_Harm[,2],Exp1_Help[,2],Exp2_Harm[,2],Exp2_Help[,2]))
+All_table <- bind_cols(Exp1_Harm,Exp1_Help,Exp2_Harm,Exp2_Help)
+colnames(All_table) <- c("PB","Intent","PB","Intent","PB","Intent","PB","Intent")
+All_table <- data.frame(PB = c(All_table[,1],All_table[,3],All_table[,5],All_table[,7]),
+                        Intent = c(All_table[,2],All_table[,4],All_table[,6],All_table[,8]))
+All_table$Agent <- rep(c("Chairman", "Lieutenant"), each = 88)
+All_table$Agent <- as.factor(All_table$Agent)
+All_table$Condition <- rep(c("Harm", "Help"), each = 44)
+All_table$Condition <- as.factor(All_table$Condition)
+All_table$Experiment <- rep(1:2, each=88)
+All_table$Experiment <- as.factor(All_table$Experiment)
+All_table$Intent <- as.factor(All_table$Intent)
+```
+
+Median Praise/Blame ratings for Help/Harm Conditions
+```{r}
+medianPB_help <- median(c(Exp1_Help[,1],Exp2_Help[,1]))
+medianPB_help
+
+medianPB_harm <- median(c(Exp1_Harm[,1],Exp2_Harm[,1]))
+medianPB_harm
+```
+
+Create Table of Praise/Blame ratings and Harm/Help Intention ratings for Correlation and T test
+```{r}
+Corr_table <- table(c(Exp1_Harm[,1],Exp1_Help[,1],Exp2_Harm[,1],Exp2_Help[,1]),
+                   c(Exp1_Harm[,2],Exp1_Help[,2],Exp2_Harm[,2],Exp2_Help[,2]))
+Corr_table <- bind_cols(Exp1_Harm,Exp1_Help,Exp2_Harm,Exp2_Help)
+Corr_table <- data.frame(Praise = c(Corr_table[,3],Corr_table[,7]),
+                         Blame = c(Corr_table[,1],Corr_table[,5]),
+                        PraiseIntent = c(Corr_table[,4],Corr_table[,8]),
+                        BlameIntent = c(Corr_table[,2],Corr_table[,6]))
+```
+
+## T test to test differences between Praise and Blame ratings
+```{r}
+PB_ttest <- t.test(Corr_table$Praise,Corr_table$Blame, var.equal = TRUE)
+PB_ttest
+PB_ttest_effectsize<- cohensD(x=Corr_table$Praise,y=Corr_table$Blame)
+PB_ttest_effectsize
+cohen.d.ci(PB_ttest_effectsize,n=88,alpha=.05)
+```
+
+## Mann-Whitney U test 
+Examining the ratings of praise/blame comparing help vs. harm
+```{r}
+wilcox.test(PB ~ Condition, data = All_table)
+```
+Mann-Whitney U effect size (r; Small: 0.1, Medium: 0.3, Large: >0.5) 
+```{r}
+wilcoxonR(x  = All_table$PB, 
+          g  = All_table$Condition,
+          ci = TRUE)
+```
+## Mann-Whitney U test 2 
+Examining the ratings of praise/blame for intentional yes/no
+```{r}
+wilcox.test(PB ~ Intent, data = All_table)
+```
+Mann-Whitney U effect size (r; Small: 0.1, Medium: 0.3, Large: >0.5) 
+```{r}
+wilcoxonR(x  = All_table$PB, 
+          g  = All_table$Intent,
+          ci = TRUE)
+```
+
+## Correlation between ratings of Praise with help intentionality
+```{r}
+P.Help_Correlation <- cor.test(Corr_table$Praise,Corr_table$PraiseIntent)
+P.Help_Correlation
+
+P.Help_plot <- ggplot(Corr_table, aes(x=PraiseIntent, y=Praise)) + 
+                      geom_point() + 
+                      geom_smooth(method=lm) +
+                      geom_jitter(width = 0.15) +
+                      labs(x = "Intentionality Judgement", y = "Praise Rating", 
+                          title = "Praise Rating correlation with Help Intentionality") +
+                      scale_x_continuous(breaks = c(0,1),labels = c("No", "Yes"))
+
+P.Help_plot
+```
+
+## Correlation between ratings of Blame with harm intentionality
+```{r}
+B.Harm_Correlation <- cor.test(Corr_table$Blame,Corr_table$BlameIntent)
+B.Harm_Correlation
+
+B.Harm_plot <- ggplot(Corr_table, aes(x=BlameIntent, y=Blame)) + 
+                      geom_point() + 
+                      geom_smooth(method=lm) +
+                      geom_jitter(width = 0.15) +
+                      labs(x = "Intentionality Judgement", y = "Blame Rating", 
+                           title = "Blame Rating correlation with Harm Intentionality") +
+                      scale_x_continuous(breaks = c(0,1),labels = c("No", "Yes"))
+
+B.Harm_plot
+```
+
+##  Correlation between all ratings of Praise/Blame with all intention ratings
+```{r}
+PB_Correlation <- cor.test(All_table$PB,as.numeric(All_table$Intent))
+PB_Correlation
+PB_Corr_effectsize <- cohensD(x=All_table$PB,y=as.numeric(All_table$Intent))
+cohen.d.ci(PB_Corr_effectsize,n=176,alpha=.05)
+
+PB_plot <- ggplot(All_table, aes(x=as.numeric(Intent), y=PB)) + 
+                  geom_point() + 
+                  geom_smooth(method=lm) +
+                  geom_jitter(width = 0.15) +
+                  labs(x = "Intentionality Judgement", y = "Praise/Blame Rating") +
+                  scale_x_continuous(breaks = c(1,2), labels = c("No", "Yes"))
+PB_plot
+```
+
+## Raincloud Plot
+```{r}
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+raincloud_theme = theme(text = element_text(size = 12), 
+                        axis.title.x = element_text(size = 12), 
+                        axis.title.y = element_text(size = 12), 
+                        axis.text = element_text(size = 12), 
+                        axis.text.x = element_text(vjust = 0.5), 
+                        legend.title=element_text(size=12), 
+                        legend.text=element_text(size=12), 
+                        legend.position = "right", 
+                        plot.title = element_text(lineheight=.8, face="bold", size = 16), 
+                        panel.border = element_blank(), 
+                        panel.grid.minor = element_blank(), 
+                        panel.grid.major = element_blank(), 
+                        axis.line.x = element_line(colour = 'black', size=0.5, linetype='solid'), 
+                        axis.line.y = element_line(colour = 'black', size=0.5, linetype='solid'))
+
+PB_Rain <- ggplot(data = All_table, 
+                 aes(y = All_table$PB, x = All_table$Condition, fill = All_table$'Agent')) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = PB, color = All_table$Agent), 
+             position = position_jitter(width = .10), size = .5, alpha = 0.8) + 
+  expand_limits(x = 3) + guides(fill = FALSE) + guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + raincloud_theme + labs(x="Condition") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + ylab("Praise/Blame Rating") + 
+  stat_summary(fun.data="mean_cl_boot", colour="black", size=.5) +
+  facet_wrap(vars(Agent))
+PB_Rain
+```
+
+## GLM - impact of praise/blame on yes/no response
+Replacement of knobes correlation 
+```{r}
+model1 <- glm(Intent ~ PB, family = binomial, data = All_table)
+summary(model1)
+confint(model1)
+```
+
+## GLM - impact of help/harm condition in exp1 and exp2
+Knobes chi square
+```{r}
+exp1_filter <- All_table$Experiment=="1"
+model_exp1 <- glm(Intent ~ Condition, family = binomial, data = All_table[exp1_filter,])
+summary(model_exp1)
+confint(model_exp1)
+
+exp2_filter <- All_table$Experiment=="2"
+model_exp2 <- glm(Intent ~ Condition, family = binomial, data = All_table[exp2_filter,])
+summary(model_exp2)
+confint(model_exp2)
+
+model2 <- glm(Intent ~ Condition, family = binomial, data = All_table)
+summary(model2)
+confint(model2)
+```
+
+## GLM - interaction between condition and experiment on intentionality
+Replacement of knobes correlation 
+```{r}
+full_model <- glm(Intent ~ Condition*Experiment, family = binomial, data = All_table)
+summary(full_model)
+confint(full_model)
+```
+
+```{r echo=FALSE}
+beepr::beep()
+```
+
+## End
