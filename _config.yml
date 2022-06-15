@@ -2,3 +2,5 @@ remote_theme: chrisrhymes/bulma-clean-theme
 fixed_navbar: top
 favicon: /assets/images/favicon.png
 title: Brad Kennedy - PhD Github
+plugins: 
+  - jekyll-redirect-from
