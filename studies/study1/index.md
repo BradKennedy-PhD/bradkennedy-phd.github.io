@@ -39,14 +39,14 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/study1/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/studies/study1/analysis/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/study1/contents/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study1/analysis');
         const data = await response.json();
         renderList1(data);
       })()
@@ -76,14 +76,14 @@ Link to dataset here
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
           const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/study1/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/studies/study1/analysis/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('rmd_list').innerHTML = htmlString;
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/study1/contents/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study1/analysis');
         const data = await response.json();
         renderList2(data);
       })()
