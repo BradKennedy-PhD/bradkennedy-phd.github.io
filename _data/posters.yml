@@ -1,20 +1,27 @@
-intro: |-
-  This is some introduction text for the showcases.
-  
-  ## Example Heading
-  It can convert markdown format
-
-items:
-  - title: Example showcase item
-    subtitle: Example subtitle
-    description: |-
-      This is the example description for this item that you are showcasing and has an image, title, description, tags and a link.
-    features:
-      - This is a feature
-      - This is a feature
-    features_styles: is-centered is-outlined is-primary
-    image: https://via.placeholder.com/480x679
-    image_ratio: is-3by4
-    link: http://www.example.com
-    link_text: View example
-    tags: PHP,CSS,JavaScript
+- title: Posters
+  subtitle: Example subtitle
+  images:
+    - link: https://via.placeholder.com/480x679
+      large_link: https://via.placeholder.com/1200x900
+      alt: Alt text of image
+      description: |-
+        This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
+        [test link](https://google.com)
+      ratio: is-16by9
+      features:
+        - This is a feature
+        - This is a feature
+      features_styles: is-centered is-outlined is-primary
+      tags: PHP,CSS,JavaScript
+    - link: https://via.placeholder.com/480x679
+      large_link: https://via.placeholder.com/1200x900
+      alt: Alt text of image
+      description: |-
+        2222This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
+        [test link](https://google.com)
+      ratio: is-16by9
+      features:
+        - This is a feature
+        - This is a feature
+      features_styles: is-centered is-outlined is-primary
+      tags: PHP,CSS,JavaScript

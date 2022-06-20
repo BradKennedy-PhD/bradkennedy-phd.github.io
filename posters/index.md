@@ -3,6 +3,6 @@ layout: page
 title: Posters
 hide_hero: true
 hide_footer: true
-showcase: posters
+gallery: posters
 show_sidebar: false
 ---
