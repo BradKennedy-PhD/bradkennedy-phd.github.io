@@ -7,7 +7,7 @@
       description: |-
         This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
         [test link](https://google.com)
-      ratio: is-16by9
+      ratio: is-3by4
       features:
         - This is a feature
         - This is a feature
@@ -19,7 +19,7 @@
       description: |-
         2222This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
         [test link](https://google.com)
-      ratio: is-16by9
+      ratio: is-3by5
       features:
         - This is a feature
         - This is a feature
