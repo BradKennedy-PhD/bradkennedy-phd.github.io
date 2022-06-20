@@ -1,27 +1,9 @@
 - title: Posters
-  subtitle: Example subtitle
   images:
-    - link: https://via.placeholder.com/480x679
-      large_link: https://via.placeholder.com/1200x900
-      alt: Alt text of image
+    - link: https://bradkennedy-phd.github.io/posters/PGRSymposium/PGRSymp22-Poster_files/PGRSymp22-Poster.png
+      large_link: https://bradkennedy-phd.github.io/posters/PGRSymposium/PGRSymp22-Poster_files/PGRSymp22-Poster.pdf
+      alt: Academic Poster
       description: |-
-        This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
-        [test link](https://google.com)
+        University of Chester PGR Symposium 2022.  
+        [Click to open PDF](https://bradkennedy-phd.github.io/posters/PGRSymposium/PGRSymp22-Poster_files/PGRSymp22-Poster.pdf)
       ratio: is-3by4
-      features:
-        - This is a feature
-        - This is a feature
-      features_styles: is-centered is-outlined is-primary
-      tags: PHP,CSS,JavaScript
-    - link: https://via.placeholder.com/480x679
-      large_link: https://via.placeholder.com/1200x900
-      alt: Alt text of image
-      description: |-
-        2222This is the example description for this item that you are showcasing and has an image, title, description, tags and a link. 
-        [test link](https://google.com)
-      ratio: is-3by5
-      features:
-        - This is a feature
-        - This is a feature
-      features_styles: is-centered is-outlined is-primary
-      tags: PHP,CSS,JavaScript
