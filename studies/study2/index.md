@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Study 2
+title: Study 2 - Sex
 hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
-# Study 2
+# Study 2 - Sex
 
 ***
 

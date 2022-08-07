@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Study 3
+title: Study 3 - Power
 hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
-# Study 3
+# Study 3 - Power
 
 ***
 

@@ -5,15 +5,13 @@
       link: /studies/pilot/
     - name: Replication
       link: /studies/replication/
-    - name: Study 1
+    - name: Study 1 - Job Ranking
       link: /studies/study1/
-    - name: Study 2
+    - name: Study 2 - Sex
       link: /studies/study2/
-    - name: Study 3
+    - name: Study 3 - Power
       link: /studies/study3/
     - name: Study 4
       link: /studies/study4/
-    - name: Study 5
-      link: /studies/study5/
 - name: Posters
   link: /posters/

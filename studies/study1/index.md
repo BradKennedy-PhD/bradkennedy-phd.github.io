@@ -1,11 +1,11 @@
 ---
 layout: page
-title: Study 1
+title: Study 1 - Job Rank
 hide_hero: true
 hide_footer: true
 menubar_toc: true
 ---
-# Study 1
+# Study 1 - Job Rank
 
 ***
 
