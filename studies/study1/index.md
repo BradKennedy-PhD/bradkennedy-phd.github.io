@@ -28,7 +28,7 @@ Link to dataset here
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('studies/study1/analysis/', '');
           const isHTML = (/.html$/).test(filePath);
           return isHTML;
         }
@@ -38,7 +38,7 @@ Link to dataset here
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
-          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('studies/study1/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -65,7 +65,7 @@ Link to dataset here
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const fileName = file.path.toLowerCase().replace(/-/g, ' ').replace('studies/study1/analysis/', '');
           const isRMD = (/.Rmd$/).test(filePath);
           return isRMD;
         }
@@ -75,7 +75,7 @@ Link to dataset here
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
-          const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
+          const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('studies/study1/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
