@@ -44,7 +44,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
           const fileName = file.path.replace('.html', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) [${filePath}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('html_list').innerHTML = htmlString;
@@ -60,7 +60,7 @@ Link to dataset here
 
 <html>
 <div>
-<p>For reproducibility, you can rerun the analysis (or just parts of) using the R Markdown file:</p>
+<p>For reproducibility, you can rerun the analysis using the R Markdown file:</p>
 <ul id="rmd_list">
       </ul>
     </div>
@@ -81,7 +81,7 @@ Link to dataset here
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
           const fileName = file.path.replace('.Rmd', '').toLowerCase().replace(/-/g, ' ').replace('analysis/', '');
-          htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file </a><i class="fas fa-external-link-alt"></i></li>`;
+          htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file [${filePath}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
         document.getElementById('rmd_list').innerHTML = htmlString;
