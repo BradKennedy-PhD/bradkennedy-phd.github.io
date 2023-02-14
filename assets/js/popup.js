@@ -5,7 +5,7 @@ Swal.fire({
   icon: 'info',
   title: 'Working on it...',
   text: 'This site is being created. Some features might not work.',
-  timer: 5000,
+  timer: 4000,
   timerProgressBar: true,
   willClose: () => {
     clearInterval(timerInterval)
