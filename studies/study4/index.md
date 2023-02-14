@@ -3,7 +3,8 @@ layout: page
 title: Study 4
 hide_hero: true
 hide_footer: true
-menubar_toc: true
+show_sidebar: false
+menubar: main_menu
 ---
 {% include notification.html
 message="This page is not operational."

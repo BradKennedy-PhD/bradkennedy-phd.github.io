@@ -3,7 +3,8 @@ layout: page
 title: Study 3 - Power
 hide_hero: true
 hide_footer: true
-menubar_toc: false
+show_sidebar: false
+menubar: main_menu
 ---
 # Study 3 - Power
 

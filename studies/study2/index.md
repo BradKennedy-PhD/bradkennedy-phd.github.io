@@ -3,7 +3,8 @@ layout: page
 title: Study 2 - Sex
 hide_hero: true
 hide_footer: true
-menubar_toc: true
+show_sidebar: false
+menubar: main_menu
 ---
 # Study 2 - Sex
 

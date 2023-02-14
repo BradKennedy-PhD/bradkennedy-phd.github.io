@@ -3,7 +3,8 @@ layout: page
 title: Pilot Study
 hide_hero: true
 hide_footer: true
-menubar_toc: true
+show_sidebar: false
+menubar: main_menu
 ---
 
 # Pilot Study
