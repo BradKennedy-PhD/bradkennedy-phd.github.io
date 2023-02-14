@@ -5,7 +5,7 @@ hero_height: is-fullwidth
 callouts: callouts
 hide_footer: true
 ---
-## Last update: 15 Jun 2022
+## Last update: 14 Feb 2023
 {% include notification.html
 message="Study pages are in development. Some links and features may not work"
 status="is-info" %}
