@@ -1638,7 +1638,7 @@ s3data$Condition &lt;- paste(s3data$Job, s3data$Version, sep = &quot;_&quot;)
 # Filter down to only those Job,Version,Power (Condition) that appear in meanRatings
 #s3data &lt;- s3data %&gt;% filter(grepl(paste(meanRatings$Condition, collapse=&quot;|&quot;), Condition))
 
-# Create a column for the social (dis)approval/environmental factor
+# Create a column for the social (dis)approval factor
 # Populate with ratings
 s3data$SocialApproval &lt;- paste(s3data$Job, s3data$Version, sep = &quot;_&quot;)
 socialranking &lt;- read.csv(here::here(&quot;Analysis&quot;,&quot;socialranking.csv&quot;))
@@ -1646,7 +1646,15 @@ s3data$SocialApproval &lt;- socialranking$Social[match(s3data$Condition, socialr
 s3data$SocialApproval &lt;- as.factor(s3data$SocialApproval)
 
 filterPB &lt;- s3data$Question == &quot;pb&quot;
-s3data$Rating &lt;- as.ordered(s3data$Rating)</code></pre>
+s3data$Rating &lt;- as.ordered(s3data$Rating)
+# Creates factors for the random effects
+s3data$Participant &lt;- as.factor(s3data$Participant)
+s3data$Item &lt;- as.factor(s3data$Item)
+
+# This centres the fixed factors using deviation coding
+contrasts(s3data$Power) &lt;- matrix(c(.5, -.5)) 
+contrasts(s3data$SEValence) &lt;- matrix(c(.5, -.5))
+contrasts(s3data$SocialApproval) &lt;- matrix(c(.5, -.5))</code></pre>
 </div>
 <div id="clmms-for-2x2x2-analysis" class="section level1">
 <h1>CLMMs for 2x2x2 Analysis</h1>
@@ -1662,101 +1670,101 @@ s3data$Rating &lt;- as.ordered(s3data$Rating)</code></pre>
 ## data:    s3data[filterPB, ]
 ## 
 ##  link  threshold nobs logLik   AIC      niter        max.grad cond.H 
-##  logit flexible  3200 -5314.95 10715.90 13331(92673) 2.68e-02 3.7e+03
+##  logit flexible  3200 -5314.95 10715.90 13407(93030) 9.82e-03 4.4e+03
 ## 
 ## Random effects:
 ##  Groups      Name                          Variance Std.Dev. Corr                        
-##  Participant (Intercept)                   1.98172  1.4077                               
-##              Powerlow                      0.50812  0.7128   -0.258                      
-##              SEValenceharm                 4.21264  2.0525   -0.722  0.037               
-##              SocialApproval1               0.08193  0.2862   -0.204 -0.791  0.582        
-##              SEValenceharm:SocialApproval1 0.03627  0.1905    0.386  0.775 -0.538 -0.947 
-##  Item        (Intercept)                   1.81473  1.3471                               
-##              Powerlow                      0.93948  0.9693   -0.049                      
-##              SEValenceharm                 4.09584  2.0238   -0.704 -0.538               
-##              SocialApproval1               4.30899  2.0758   -0.995  0.071  0.709        
-##              SEValenceharm:SocialApproval1 7.69555  2.7741    0.803  0.234 -0.940 -0.812 
+##  Participant (Intercept)                   1.98257  1.4080                               
+##              Powerlow                      0.50782  0.7126   -0.258                      
+##              SEValenceharm                 4.21452  2.0529   -0.722  0.037               
+##              SocialApproval1               0.08203  0.2864   -0.204 -0.790  0.581        
+##              SEValenceharm:SocialApproval1 0.03634  0.1906    0.386  0.775 -0.537 -0.948 
+##  Item        (Intercept)                   1.81540  1.3474                               
+##              Powerlow                      0.94061  0.9699   -0.049                      
+##              SEValenceharm                 4.09511  2.0236   -0.704 -0.538               
+##              SocialApproval1               4.31122  2.0763   -0.995  0.071  0.709        
+##              SEValenceharm:SocialApproval1 7.69874  2.7747    0.803  0.233 -0.940 -0.812 
 ## Number of groups:  Participant 100,  Item 32 
 ## 
 ## Coefficients:
-##                                        Estimate Std. Error z value Pr(&gt;|z|)  
-## Powerlow                                 0.6817     0.3822   1.783   0.0745 .
-## SEValenceharm                            0.3951     0.4902   0.806   0.4203  
-## SocialApproval1                         -0.5289     0.4483  -1.180   0.2380  
-## Powerlow:SEValenceharm                   0.6017     0.4307   1.397   0.1624  
-## Powerlow:SocialApproval1                 0.3374     0.5486   0.615   0.5386  
-## SEValenceharm:SocialApproval1            0.6274     0.6383   0.983   0.3257  
-## Powerlow:SEValenceharm:SocialApproval1  -0.1665     0.7103  -0.234   0.8146  
+##                                   Estimate Std. Error z value Pr(&gt;|z|)    
+## Power1                             -1.1097     0.2215  -5.010 5.44e-07 ***
+## SEValence1                         -0.9676     0.2870  -3.372 0.000747 ***
+## SocialApproval1                     0.0885     0.2497   0.354 0.723037    
+## Power1:SEValence1                   0.5184     0.3139   1.651 0.098661 .  
+## Power1:SocialApproval1              0.2539     0.3563   0.713 0.475988    
+## SEValence1:SocialApproval1          0.5445     0.5522   0.986 0.324153    
+## Power1:SEValence1:SocialApproval1   0.1642     0.7099   0.231 0.817074    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Threshold coefficients:
 ##     Estimate Std. Error z value
-## 0|1  -2.9159     0.3362  -8.672
-## 1|2  -1.6445     0.3312  -4.965
-## 2|3  -0.3907     0.3297  -1.185
-## 3|4   0.8774     0.3300   2.659
-## 4|5   2.4709     0.3329   7.422
-## 5|6   3.8998     0.3382  11.532</code></pre>
+## 0|1  -3.5606     0.1465 -24.298
+## 1|2  -2.2891     0.1323 -17.298
+## 2|3  -1.0353     0.1265  -8.183
+## 3|4   0.2329     0.1255   1.856
+## 4|5   1.8263     0.1301  14.041
+## 5|6   3.2553     0.1410  23.087</code></pre>
 <pre class="r"><code>emmeans(PB_Model, pairwise ~ Power * SEValence * SocialApproval, adjust = &quot;none&quot;)</code></pre>
 <pre><code>## $emmeans
 ##  Power SEValence SocialApproval  emmean    SE  df asymp.LCL asymp.UCL
-##  high  help      0              -0.3828 0.328 Inf    -1.027     0.261
-##  low   help      0               0.2989 0.390 Inf    -0.465     1.063
-##  high  harm      0               0.0123 0.351 Inf    -0.677     0.701
-##  low   harm      0               1.2956 0.264 Inf     0.777     1.814
-##  high  help      1              -0.9118 0.241 Inf    -1.384    -0.440
-##  low   help      1               0.1073 0.386 Inf    -0.649     0.864
-##  high  harm      1               0.1108 0.308 Inf    -0.493     0.715
-##  low   harm      1               1.5650 0.282 Inf     1.013     2.117
+##  high  help      0              -0.3829 0.328 Inf    -1.027     0.261
+##  low   help      0               0.2996 0.390 Inf    -0.465     1.064
+##  high  harm      0               0.0121 0.351 Inf    -0.677     0.701
+##  low   harm      0               1.2951 0.264 Inf     0.777     1.813
+##  high  help      1              -0.9117 0.241 Inf    -1.384    -0.439
+##  low   help      1               0.1069 0.386 Inf    -0.650     0.864
+##  high  harm      1               0.1100 0.308 Inf    -0.494     0.714
+##  low   harm      1               1.5648 0.282 Inf     1.013     2.117
 ## 
 ## Confidence level used: 0.95 
 ## 
 ## $contrasts
 ##  contrast                                              estimate    SE  df z.ratio p.value
-##  high help SocialApproval0 - low help SocialApproval0  -0.68170 0.382 Inf  -1.783  0.0745
-##  high help SocialApproval0 - high harm SocialApproval0 -0.39511 0.490 Inf  -0.806  0.4203
-##  high help SocialApproval0 - low harm SocialApproval0  -1.67847 0.439 Inf  -3.819  0.0001
-##  high help SocialApproval0 - high help SocialApproval1  0.52892 0.448 Inf   1.180  0.2380
-##  high help SocialApproval0 - low help SocialApproval1  -0.49015 0.521 Inf  -0.941  0.3467
-##  high help SocialApproval0 - high harm SocialApproval1 -0.49361 0.451 Inf  -1.095  0.2736
-##  high help SocialApproval0 - low harm SocialApproval1  -1.94780 0.436 Inf  -4.467  &lt;.0001
-##  low help SocialApproval0 - high harm SocialApproval0   0.28659 0.606 Inf   0.473  0.6365
-##  low help SocialApproval0 - low harm SocialApproval0   -0.99677 0.503 Inf  -1.981  0.0476
-##  low help SocialApproval0 - high help SocialApproval1   1.21062 0.471 Inf   2.572  0.0101
-##  low help SocialApproval0 - low help SocialApproval1    0.19155 0.532 Inf   0.360  0.7186
-##  low help SocialApproval0 - high harm SocialApproval1   0.18809 0.512 Inf   0.367  0.7133
-##  low help SocialApproval0 - low harm SocialApproval1   -1.26610 0.442 Inf  -2.862  0.0042
-##  high harm SocialApproval0 - low harm SocialApproval0  -1.28337 0.327 Inf  -3.928  0.0001
-##  high harm SocialApproval0 - high help SocialApproval1  0.92403 0.417 Inf   2.218  0.0265
-##  high harm SocialApproval0 - low help SocialApproval1  -0.09504 0.567 Inf  -0.168  0.8669
-##  high harm SocialApproval0 - high harm SocialApproval1 -0.09850 0.432 Inf  -0.228  0.8197
-##  high harm SocialApproval0 - low harm SocialApproval1  -1.55269 0.472 Inf  -3.287  0.0010
-##  low harm SocialApproval0 - high help SocialApproval1   2.20739 0.356 Inf   6.194  &lt;.0001
-##  low harm SocialApproval0 - low help SocialApproval1    1.18833 0.481 Inf   2.468  0.0136
-##  low harm SocialApproval0 - high harm SocialApproval1   1.18487 0.365 Inf   3.250  0.0012
-##  low harm SocialApproval0 - low harm SocialApproval1   -0.26933 0.370 Inf  -0.728  0.4664
-##  high help SocialApproval1 - low help SocialApproval1  -1.01907 0.405 Inf  -2.516  0.0119
-##  high help SocialApproval1 - high harm SocialApproval1 -1.02253 0.395 Inf  -2.587  0.0097
-##  high help SocialApproval1 - low harm SocialApproval1  -2.47672 0.376 Inf  -6.580  &lt;.0001
-##  low help SocialApproval1 - high harm SocialApproval1  -0.00346 0.505 Inf  -0.007  0.9945
-##  low help SocialApproval1 - low harm SocialApproval1   -1.45765 0.457 Inf  -3.187  0.0014
-##  high harm SocialApproval1 - low harm SocialApproval1  -1.45419 0.362 Inf  -4.019  0.0001</code></pre>
+##  high help SocialApproval0 - low help SocialApproval0   -0.6825 0.382 Inf  -1.786  0.0740
+##  high help SocialApproval0 - high harm SocialApproval0  -0.3951 0.490 Inf  -0.806  0.4203
+##  high help SocialApproval0 - low harm SocialApproval0   -1.6781 0.440 Inf  -3.818  0.0001
+##  high help SocialApproval0 - high help SocialApproval1   0.5288 0.448 Inf   1.179  0.2383
+##  high help SocialApproval0 - low help SocialApproval1   -0.4898 0.521 Inf  -0.940  0.3472
+##  high help SocialApproval0 - high harm SocialApproval1  -0.4929 0.451 Inf  -1.093  0.2743
+##  high help SocialApproval0 - low harm SocialApproval1   -1.9477 0.436 Inf  -4.467  &lt;.0001
+##  low help SocialApproval0 - high harm SocialApproval0    0.2874 0.606 Inf   0.474  0.6355
+##  low help SocialApproval0 - low harm SocialApproval0    -0.9956 0.503 Inf  -1.979  0.0479
+##  low help SocialApproval0 - high help SocialApproval1    1.2113 0.471 Inf   2.573  0.0101
+##  low help SocialApproval0 - low help SocialApproval1     0.1927 0.532 Inf   0.362  0.7170
+##  low help SocialApproval0 - high harm SocialApproval1    0.1896 0.512 Inf   0.370  0.7111
+##  low help SocialApproval0 - low harm SocialApproval1    -1.2652 0.442 Inf  -2.861  0.0042
+##  high harm SocialApproval0 - low harm SocialApproval0   -1.2830 0.327 Inf  -3.927  0.0001
+##  high harm SocialApproval0 - high help SocialApproval1   0.9238 0.417 Inf   2.218  0.0266
+##  high harm SocialApproval0 - low help SocialApproval1   -0.0947 0.567 Inf  -0.167  0.8674
+##  high harm SocialApproval0 - high harm SocialApproval1  -0.0978 0.432 Inf  -0.226  0.8210
+##  high harm SocialApproval0 - low harm SocialApproval1   -1.5527 0.472 Inf  -3.287  0.0010
+##  low harm SocialApproval0 - high help SocialApproval1    2.2068 0.356 Inf   6.190  &lt;.0001
+##  low harm SocialApproval0 - low help SocialApproval1     1.1883 0.482 Inf   2.468  0.0136
+##  low harm SocialApproval0 - high harm SocialApproval1    1.1852 0.365 Inf   3.251  0.0011
+##  low harm SocialApproval0 - low harm SocialApproval1    -0.2697 0.370 Inf  -0.729  0.4657
+##  high help SocialApproval1 - low help SocialApproval1   -1.0186 0.405 Inf  -2.514  0.0119
+##  high help SocialApproval1 - high harm SocialApproval1  -1.0217 0.395 Inf  -2.584  0.0098
+##  high help SocialApproval1 - low harm SocialApproval1   -2.4765 0.376 Inf  -6.578  &lt;.0001
+##  low help SocialApproval1 - high harm SocialApproval1   -0.0031 0.505 Inf  -0.006  0.9951
+##  low help SocialApproval1 - low harm SocialApproval1    -1.4579 0.457 Inf  -3.188  0.0014
+##  high harm SocialApproval1 - low harm SocialApproval1   -1.4548 0.362 Inf  -4.022  0.0001</code></pre>
 <pre class="r"><code>confint(PB_Model)</code></pre>
-<pre><code>##                                              2.5 %     97.5 %
-## 0|1                                    -3.57490217 -2.2568942
-## 1|2                                    -2.29362683 -0.9953018
-## 2|3                                    -1.03684643  0.2554683
-## 3|4                                     0.23058490  1.5242510
-## 4|5                                     1.81835497  3.1233799
-## 5|6                                     3.23700879  4.5626510
-## Powerlow                               -0.06749181  1.4308951
-## SEValenceharm                          -0.56570372  1.3559221
-## SocialApproval1                        -1.40748483  0.3496448
-## Powerlow:SEValenceharm                 -0.24239496  1.4457232
-## Powerlow:SocialApproval1               -0.73792024  1.4126553
-## SEValenceharm:SocialApproval1          -0.62370072  1.8785377
-## Powerlow:SEValenceharm:SocialApproval1 -1.55869343  1.2256116</code></pre>
+<pre><code>##                                         2.5 %     97.5 %
+## 0|1                               -3.84776700 -3.2733442
+## 1|2                               -2.54845103 -2.0297193
+## 2|3                               -1.28323675 -0.7873048
+## 3|4                               -0.01301378  0.4787536
+## 4|5                                1.57138460  2.0812627
+## 5|6                                2.97898562  3.5317075
+## Power1                            -1.54385352 -0.6756060
+## SEValence1                        -1.52998599 -0.4051316
+## SocialApproval1                   -0.40092177  0.5779162
+## Power1:SEValence1                 -0.09686356  1.1335844
+## Power1:SocialApproval1            -0.44434071  0.9522222
+## SEValence1:SocialApproval1        -0.53787685  1.6268356
+## Power1:SEValence1:SocialApproval1 -1.22724954  1.5556848</code></pre>
 </div>
 <div id="research-team" class="section level1">
 <h1>Research Team</h1>
