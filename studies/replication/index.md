@@ -13,8 +13,8 @@ menubar: main_menu
 ## Description
 Description here
 
-## Dataset
-Link to dataset here
+## Open Science Framework
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/8h9aw/) (OSF).
 
 <html>
     <div>
@@ -90,12 +90,6 @@ Link to dataset here
       })()
     </script>
 </html>
-
-## Materials
-Link to materials here
-
-## Open Science Framework
-Link to OSF here
 
 ## Other:
 Interactive results etc.

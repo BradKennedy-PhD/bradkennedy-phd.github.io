@@ -6,20 +6,16 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-{% include notification.html
-message="This page is not operational."
-icon="false" status="is-danger" %}
-
-# Study 4
+# Study 4 - Environment
 
 ***
 
 ## Description
-Description here
+The study aims are (1) to replicate the findings of the previous study and (2) to evaluate which of two theoretical frameworks (DSCM vs NVM) provides the best explanation for the observed pattern of results. To explore this, the study will examine judgements of harmful side effects for low-power versus high-power agents in their work situation (which is the same as the previous study) versus in an out-of-work situation.
 
 
-## Dataset
-Link to dataset here
+## Open Science Framework
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/hyve2/) (OSF).
 
 <html>
     <div>
@@ -96,14 +92,5 @@ Link to dataset here
     </script>
 </html>
 
-
-## Materials
-Link to materials here
-
-## Open Science Framework
-Link to OSF here
-
 ## Other:
 Interactive results etc.
-
-

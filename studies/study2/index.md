@@ -11,11 +11,10 @@ menubar: main_menu
 ***
 
 ## Description
-Description here
+An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s sex on people’s interpretation of their actions and the consequences. 
 
-
-## Dataset
-Link to dataset here
+## Open Science Framework
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/jes79/) (OSF).
 
 <html>
     <div>

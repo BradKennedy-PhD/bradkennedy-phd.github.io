@@ -11,10 +11,14 @@ menubar: main_menu
 ***
 
 ## Description
-Description here
+This study will investigate how intention is viewed. That is, whether or not an action was planned. Additionally, it will investigate how much particular actions deserve praise or blame. 
+Vignettes will vary between high- and low-ranking jobs, and the side-effect will vary between helpful and harmful.
+It is predicted that there will be a difference in the reported levels of perceived intention between high- and low-ranking job roles. 
+It is further predicted that participants will attribute high levels of blame for harmful side-effects and low levels of praise for helpful side-effects.
+Data will be analysed with mixed effects modelling in R. (N=100)
 
-## Dataset
-Link to dataset here
+## Open Science Framework
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/kncea/) (OSF).
 
 <html>
     <div>
@@ -90,13 +94,6 @@ Link to dataset here
       })()
     </script>
 </html>
-
-
-## Materials
-Link to materials here
-
-## Open Science Framework
-Link to OSF here
 
 ## Other:
 Interactive results etc.
