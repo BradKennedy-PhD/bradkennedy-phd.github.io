@@ -5,20 +5,6 @@ hero_height: is-fullwidth
 callouts: callouts
 hide_footer: true
 ---
-<a
-id="cy-effective-orcid-url"
-class="underline"
-    href="https://orcid.org/0000-0003-4636-2210"
-    target="orcid.widget"
-    rel="me noopener noreferrer"
-    style="vertical-align: top">
-    <img
-    src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-    style="width: 1em; margin-inline-start: 0.5em"
-    alt="ORCID iD icon"/>
-    https://orcid.org/0000-0003-4636-2210
-</a>
-    
 ## Last update: 16 June 2023
 {% include notification.html
 message="Study pages are in development. Some links and features may not work"
