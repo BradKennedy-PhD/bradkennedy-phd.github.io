@@ -11,9 +11,20 @@ menubar: main_menu
 ***
 
 ## Description
-Description here
+B Kennedy's PhD project is based on this initial publication by Joshua Knobe, 2003, an American philosopher. Knobe theorised a side-effect effect (SEE) which can be described as viewing ‘side-effect’ actions as more intentional if they were viewed as harmful, and less intentional if they were helpful.
+
+In the original study, the researcher approached a total sample of 120 in a public park in America. He read a small vignette whereby a character performed an action which had another consequential action (a side-effect). The researcher then asked the sample to rate how much praise the character deserved for the helpful condition or how much blame they deserved for the harm condition. Additionally, the sample were asked to say if the side effect was intentional or not. It was found that people gave less praise for the help condition and more blame the harm condition. Additionally, they rated the harmful side effects as more intentional than the helpful one.
+
+The original research was conducted in America in 2003. It is hoped that the findings can be replicated with a UK sample in 2018. In addition, it is hoped that administering the study electronically will produce the same outcome. By replicating the findings here, we would be able to support the SEE theory and build a sample of participants who may agree to being contacted for future (PhD) SEE-related studies.
+
+It is predicted that we would replicate the results of Knobe (2003), in that, participants would rate the harmful condition as significantly more intentional and the helpful condition as significantly less intentional.
+
+Reference Knobe, J. (2003). Ordinary Language. Analysis, 63(279), 190–194.
 
 ## Open Science Framework
+
+<a href="https://osf.io/xhfe9/" class="button is-primary">View Materials</a>
+
 Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/8h9aw/) (OSF).
 
 <html>
@@ -90,7 +101,3 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       })()
     </script>
 </html>
-
-## Other:
-Interactive results etc.
-
