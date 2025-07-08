@@ -3,8 +3,8 @@
 let timerInterval
 Swal.fire({
   icon: 'info',
-  title: 'Working on it...',
-  text: 'This site is being created. Some features might not work.',
+  title: 'Update in progress...',
+  text: 'This site is being updated. File upload in progress, check back later.',
   timer: 4000,
   timerProgressBar: true,
   willClose: () => {
@@ -16,4 +16,3 @@ Swal.fire({
     console.log('I was closed by the timer')
   }
 })
-

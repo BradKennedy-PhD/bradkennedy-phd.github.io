@@ -1,23 +1,20 @@
 ---
 layout: page
-title: Pilot Study
+title: Study 3 - Gender
 hide_hero: true
 hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
+# Study 3 - Gender
 
-# Pilot Study
-
----
+***
 
 ## Description
-
-This online study examined the social opinions of various job roles and working sectors.
+An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s gender on people’s interpretation of their actions and the consequences. 
 
 ## Open Science Framework
-
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/w279r/) (OSF).
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/jes79/) (OSF).
 
 <html>
     <div>
@@ -32,7 +29,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/pilot/analysis/', '');
+          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/study3gender/analysis/', '');
           const isHTML = (/.html$/).test(filePath);
           return isHTML;
         }
@@ -42,7 +39,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
-          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/pilot/analysis/', '');
+          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('3gender', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -50,7 +47,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/pilot/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study3gender/analysis');
         const data = await response.json();
         renderList1(data);
       })()
@@ -69,7 +66,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace(/-/g, ' ').replace('studies/pilot/analysis/', '');
+          const fileName = file.path.replace(/-/g, ' ').replace('3gender', '');
           const isRMD = (/.Rmd$/).test(filePath);
           return isRMD;
         }
@@ -79,7 +76,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
-          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('studies/pilot/analysis/', '');
+          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('3gender', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -87,13 +84,20 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/pilot/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study3gender/analysis');
         const data = await response.json();
         renderList2(data);
       })()
     </script>
 </html>
 
-## Other
 
-Interactive results are available [here](http://apps.bradleykennedy.co.uk/pilotdata/)  
+## Materials
+Link to materials here
+
+## Open Science Framework
+Link to OSF here
+
+## Other:
+Interactive results etc.
+

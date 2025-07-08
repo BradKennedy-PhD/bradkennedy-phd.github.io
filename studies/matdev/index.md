@@ -1,20 +1,23 @@
 ---
 layout: page
-title: Study 3 - Power
+title: Material Development Study
 hide_hero: true
 hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Study 3 - Power
 
-***
+# Material Development Study
+
+---
 
 ## Description
-An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s perceived power on people’s interpretation of their actions and the consequences. 
+
+This online study examined the social opinions of various job roles and working sectors.
 
 ## Open Science Framework
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/u3j4y/) (OSF).
+
+Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/w279r/) (OSF).
 
 <html>
     <div>
@@ -29,7 +32,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/study3/analysis/', '');
+          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/matdev/analysis/', '');
           const isHTML = (/.html$/).test(filePath);
           return isHTML;
         }
@@ -39,7 +42,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
-          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/study3/analysis/', '');
+          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/matdev/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -47,7 +50,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study3/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/matdev/analysis');
         const data = await response.json();
         renderList1(data);
       })()
@@ -66,7 +69,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace(/-/g, ' ').replace('studies/study3/analysis/', '');
+          const fileName = file.path.replace(/-/g, ' ').replace('studies/matdev/analysis/', '');
           const isRMD = (/.Rmd$/).test(filePath);
           return isRMD;
         }
@@ -76,7 +79,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
-          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('studies/study3/analysis/', '');
+          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('studies/matdev/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -84,12 +87,13 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       }
       
       (async () => {
-        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/study3/analysis');
+        const response = await fetch('https://api.github.com/repos/BradKennedy-PhD/bradkennedy-phd.github.io/contents/studies/matdev/analysis');
         const data = await response.json();
         renderList2(data);
       })()
     </script>
 </html>
 
-## Other:
-Interactive results etc.
+## Other
+
+Interactive results are available [here](http://apps.bradleykennedy.co.uk/pilotdata/)  
