@@ -1,17 +1,17 @@
 - name: Studies
   link: /#
   dropdown:
-    - name: Pilot Study
-      link: /studies/pilot/
-    - name: Replication
+    - name: Material Development Study
+      link: /studies/matdev/
+    - name: Knobe (2003) Replication
       link: /studies/replication/
-    - name: Study 1 - Job Ranking
-      link: /studies/study1/
-    - name: Study 2 - Sex
-      link: /studies/study2/
-    - name: Study 3 - Power
-      link: /studies/study3/
-    - name: Study 4 - Environment
-      link: /studies/study4/
+    - name: Study 2 - Job Status
+      link: /studies/study2job/
+    - name: Study 3 - Gender
+      link: /studies/study3gender/
+    - name: Study 4 - Power
+      link: /studies/study4power/
+    - name: Study 5 - Environment
+      link: /studies/study5env/
 - name: Posters
   link: /posters/
