@@ -16,8 +16,14 @@ menubar: main_menu
 This online study examined the social opinions of various job roles and working sectors.
 
 ## Open Science Framework
+<a href="https://osf.io/w279r/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
 
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/w279r/) (OSF).
+<a href="https://osf.io/hv3p4/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/rck5h/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/2b5tz/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
+
 
 <html>
     <div>
@@ -96,4 +102,4 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
 
 ## Other
 
-Interactive results are available [here](http://apps.bradleykennedy.co.uk/pilotdata/)  
+<a href="http://apps.bradleykennedy.co.uk/pilotdata/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Interactive Results <i class="fas fa-external-link-alt"></i></a>
