@@ -18,7 +18,13 @@ It is further predicted that participants will attribute high levels of blame fo
 Data will be analysed with mixed effects modelling in R. (N=100)
 
 ## Open Science Framework
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/kncea/) (OSF).
+<a href="https://osf.io/kncea/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/pybv4/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/gz5yd/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/dp5fm/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
 
 <html>
     <div>
@@ -94,7 +100,3 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
       })()
     </script>
 </html>
-
-## Other:
-Interactive results etc.
-
