@@ -22,10 +22,13 @@ It is predicted that we would replicate the results of Knobe (2003), in that, pa
 Reference Knobe, J. (2003). Ordinary Language. Analysis, 63(279), 190–194.
 
 ## Open Science Framework
+<a href="https://osf.io/8h9aw/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
 
-<a href="https://osf.io/xhfe9/" class="button is-primary">View Materials</a>
+<a href="https://osf.io/xhfe9/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
 
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/8h9aw/) (OSF).
+<a href="https://osf.io/9uy3m/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/g2d7p/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
 
 <html>
     <div>
