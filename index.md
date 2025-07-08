@@ -10,10 +10,7 @@ hide_footer: true
   <span>0000-0003-4636-2210</span>
 </a>
 
-## Last update: 7 July 2025
-{% include notification.html
-message="This site is being updated. Multiple file uploads in progress, check back later."
-status="is-info" %}
+### Last update: 8 July 2025
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script>
