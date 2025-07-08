@@ -40,7 +40,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles1(filter))) {
           const filePath = file.path.replace('.html', '');
-          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/study4/analysis/', '');
+          const fileName = file.path.replace('.html', '').replace(/-/g, ' ').replace('studies/study5env/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">View analysis script as webpage (HTML) [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
@@ -67,7 +67,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         filter = filter.toLowerCase()
         return (file) => {
           const filePath = file.path;
-          const fileName = file.path.replace(/-/g, ' ').replace('studies/study4/analysis/', '');
+          const fileName = file.path.replace(/-/g, ' ').replace('studies/study5env/analysis/', '');
           const isRMD = (/.Rmd$/).test(filePath);
           return isRMD;
         }
@@ -77,7 +77,7 @@ Materials, data, and analysis scripts are available on the [Open Science Framewo
         let htmlString = '<ul>';
         for (let file of data.filter(filterFiles2(filter))) {
           const filePath = file.path;
-          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('studies/study4/analysis/', '');
+          const fileName = file.path.replace('.Rmd', '').replace(/-/g, ' ').replace('studies/study5env/analysis/', '');
           htmlString += `<li><a href="https://bradkennedy-phd.github.io/${filePath}" target="_blank" rel="noopener noreferrer">DOWNLOAD analysis script as R Markdown file [${fileName}] </a><i class="fas fa-external-link-alt"></i></li>`;
         }
       htmlString += '</ul>';
