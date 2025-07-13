@@ -2,11 +2,10 @@ style: is-light
 height: is-small
 items:
   - title: Mailing Lists
-    subtitle: Future studies and/or results
+    subtitle: Future studies
     icon: fa-envelope
     description: >
-      If you'd like to hear about any future research or if you'd like to
-      hear about the results of my ongoing studies, sign up here.
+      If you'd like to hear about opportunities to get involved with future research, sign up here.
     call_to_action_name: Sign up
     call_to_action_link: https://link.bradleykennedy.co.uk/results
   - title: Open Science Framework
