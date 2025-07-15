@@ -22,8 +22,6 @@ An online study conducted with Qualtrics survey software. The aim is to investig
 
 <a href="https://osf.io/gu7bh/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
 
-Materials, data, and analysis scripts are available on the [Open Science Framework]() (OSF).
-
 <html>
     <div>
       <h2>Analysis</h2>
