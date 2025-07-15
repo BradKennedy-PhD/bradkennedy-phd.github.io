@@ -10,7 +10,7 @@ hide_footer: true
   <span>0000-0003-4636-2210</span>
 </a>
 
-### Last update: 8 July 2025
+### Last update: 15 July 2025
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script>
+<!-- <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script> -->
