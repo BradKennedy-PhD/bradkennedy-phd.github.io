@@ -12,5 +12,7 @@ hide_footer: true
 
 ### Last update: 15 July 2025
 
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BradKennedy-PhD/bradkennedy-phd.github.io/HEAD?urlpath=rstudio)
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script> -->
