@@ -1,0 +1,7 @@
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("stringr")
+install.packages("ordinal")
+install.packages("emmeans")
+install.packages("Hmisc")
+install.packages("here")
