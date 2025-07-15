@@ -14,7 +14,13 @@ menubar: main_menu
 An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s gender on people’s interpretation of their actions and the consequences. 
 
 ## Open Science Framework
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/jes79/) (OSF).
+<a href="https://osf.io/jes79/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/hwqgm/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/mprxb/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/328ds/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
 
 <html>
     <div>

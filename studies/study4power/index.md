@@ -14,7 +14,15 @@ menubar: main_menu
 An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s perceived power on people’s interpretation of their actions and the consequences. 
 
 ## Open Science Framework
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/u3j4y/) (OSF).
+<a href="https://osf.io/u3j4y/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/rn68x/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/5txkg/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/gu7bh/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
+
+Materials, data, and analysis scripts are available on the [Open Science Framework]() (OSF).
 
 <html>
     <div>

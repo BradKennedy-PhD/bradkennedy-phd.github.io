@@ -1,0 +1,282 @@
+---
+title: "Study4-Environment Analysis"
+author: "Bradley Kennedy"
+output:
+  html_document:
+    code_folding: show
+    toc: true
+    toc_float:
+      collapsed: false
+subtitle: Investigating the influence of the agent's Environment on the Side-Effect Effect
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Study Information
+This preregistered study was a online study conducted using Qualtrics, recruiting with Prolific.co. The study investigated how intention is viewed. That is, whether or not an action was planned. Additionally, it investigated how much particular actions deserve praise or blame. 
+
+In the study, vignettes were presented to participants. These vignettes varied the environment of the main character (agent). For example vignettes, see the OSF repository.
+
+Preregistration, materials, analysis code and a copy of the anonymised data will be made publically available on the Open Science Framework, links below.
+
+OSF Repository: <https://osf.io/hyve2/>  
+OSF Preregistration: <https://osf.io/7d5up>
+
+# R Set-up
+Current R Version: `r getRversion()`
+
+Check if required packages need to be installed, if so, install
+```{r install packages, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
+list_of_packages<-c("tidyverse","dplyr", "stringr", "ordinal", "emmeans", "Hmisc", "here")
+new.packages <- 
+  list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+if(length(new.packages))install.packages(new.packages)
+
+lapply(list_of_packages, library, character.only = TRUE)
+```
+
+Check for package updates from cloud.r-project.org
+```{r update packages, results='hide', warning=FALSE, message=FALSE}
+update.packages(ask=FALSE, repos = "https://cloud.r-project.org")
+```
+
+Import Data & Set variables
+```{r import data, results='hide', warning=FALSE, message=FALSE}
+s4data <- read_csv(here("DataWrangling","cleaned_s4data.csv"), col_types = 
+                     cols(List = col_factor(levels = c("1", "2", "3", "4")), 
+                          Question = col_factor(levels = c("int", "pb")),
+                          Power = col_factor(levels = c("high", "low")),
+                          Environment = col_factor(levels = c("inwork", "outwork"))))
+
+# Plot data set-up
+PlotData <- s4data
+PlotData$Environment <- PlotData$Environment %>% 
+  as.factor() %>% 
+  plyr::revalue(c("inwork"="In Work", "outwork"="Out Work"))
+PlotData$Power <- PlotData$Power %>% 
+  as.factor() %>% 
+  plyr::revalue(c("low"="Low power", "high"="High power"))
+
+s4data$age <- as.numeric(s4data$age)
+s4data$gender <- tolower(s4data$gender)
+s4data$gender <- as.factor(s4data$gender)
+s4data$Job <- as.factor(s4data$Job)
+
+# Filters for (1) Blame/Praise and (2) Intentionality for the main analysis
+filterPB <- s4data$Question == "pb"
+filterInt <- s4data$Question == "int"
+
+# This creates the ordered factor for the Rating variable which is Likert scale
+s4data$Rating <- as.ordered(s4data$Rating)
+
+# Creates factors for the random effects
+s4data$Participant <- as.factor(s4data$Participant)
+s4data$Item <- as.factor(s4data$Item)
+
+# This centres the fixed factors using deviation coding
+contrasts(s4data$Power) <- matrix(c(.5, -.5)) 
+contrasts(s4data$Environment) <- matrix(c(.5, -.5))
+```
+
+# Demographics
+
+```{r Participant Demographics, warning=FALSE, message=FALSE, cache=TRUE}
+# Report N
+s4data_n <- length(unique(s4data$Participant))
+
+# Summary of number per list
+s4data_list <- s4data %>% 
+  group_by(List) %>% 
+  dplyr::summarise(list_count = n() / (count(s4data)/length(unique(s4data$Participant))))
+
+# Report Mean and SD completion times
+mean_time <-  round(mean(s4data$Duration)/60, digits = 2)
+sd_time <- round(sd(s4data$Duration)/60, digits = 2)
+median_time <- round(median(s4data$Duration)/60, digits = 2)
+
+# Report Gender
+# Capitalise each value to avoid interaction of "man" and "woman" in str_detect
+# check for unique elements in `gender`
+s4data$gender <- str_to_title(s4data$gender)
+unique_genders <- unique(s4data$gender)
+# define pattern for each category
+Male <- paste(c("Male", "Man", "M"), collapse = "|")
+Female <- paste(c("Female", "Woman", "F"), collapse = "|")
+Non_binary <- paste(c("Other", "Mtf", "Ftm", "Non-binary"), collapse= "|")
+
+# apply category with `case_when` and pattern:
+s4data <- s4data %>% 
+    mutate(gender = case_when(
+        str_detect(gender, Male) ~ "Male",
+        str_detect(gender, Female) ~ "Female",
+        str_detect(gender, Non_binary) ~ "Non-binary"))
+
+pp_gender <- s4data %>% 
+  group_by(gender) %>% 
+  dplyr::summarise(gender_count = n() / (count(s4data)/length(unique(s4data$Participant))))
+
+# M SD Min Max Age
+pp_age <- summary(s4data$age)
+pp_sd_age <- round(sd(s4data$age), digits = 2)
+```
+
+N = `r s4data_n`  
+Mean (SD) Time to complete: `r mean_time` (`r sd_time`)  
+Median Time to complete: `r median_time`  
+Gender Summary
+```{r echo=FALSE}
+print(pp_gender)
+```
+
+Age Summary
+```{r echo=FALSE}
+print(pp_age)
+```
+SD Age: `r pp_sd_age`  
+
+List Quota Summary
+```{r echo=FALSE}
+print(s4data_list)
+```
+
+# Analysis
+
+## Cumulative Link Mixed Models 
+Christensen, R. H. B. (2019). ordinal - Regression Models for Ordinal Data. R package version 2019.12-10. https://CRAN.R-project.org/package=ordinal.
+
+### Blame model
+DV is `Rating` which is the Likert scale response of assigning degree of Blame (0 to 6)
+`Power` is the Agent's Job Power level experimental factor (levels high & low)
+`Environment` is the In-Work / Out-Work experimental factor (level inwork = In-Work; level outwork = Out-Work)
+```{r blame model, warning=FALSE, message=FALSE, cache=TRUE}
+PB_Model <- clmm(Rating ~ Power * Environment + (1 + Power * Environment | Participant) + 
+                   (1 + Power * Environment | Item), data = s4data[filterPB,])
+summary(PB_Model)
+
+# This produces the pairwise comparisons in the Blame Model for the interaction of Agent Power (Power) and Agent Environment (Environment)
+emmeans(PB_Model, pairwise ~ Power * Environment, adjust = "none")
+
+# This produces the confidence intervals for the main effects and the interaction for the Blame Model
+confint(PB_Model)
+```
+
+### Intentionality model
+DV is `Rating` which is the Likert scale response of assigning degree of Intentionality (0 to 6)
+`Power` is the Agent's Job Power level experimental factor (levels high & low)
+`Environment` is the In-Work / Out-Work experimental factor (level inwork = In-Work; level outwork = Out-Work)
+```{r intentionality model, warning=FALSE, message=FALSE, cache=TRUE}
+Int_Model <- clmm(Rating ~ Power * Environment + (1 + Power * Environment | Participant) + 
+                    (1 + Power * Environment | Item), data = s4data[filterInt,])
+
+summary(Int_Model)
+
+# This produces the pairwise comparisons for the Intentionality Model for the interaction of Agent Job Power (Power) and Agent Environment (Environment)
+emmeans(Int_Model, pairwise ~ Power * Environment, adjust = "none")
+
+# This produces the confidence intervals for the main effects and the interaction for the Intentionality Model
+confint(Int_Model)
+```
+
+### Null model comparisons
+```{r null models, warning=FALSE, message=FALSE, cache=TRUE}
+PB_null <- clmm(Rating ~ 1 + (1 + Power * Environment | Participant) + 
+                  (1 + Power * Environment | Item), 
+                data = s4data[filterPB,])
+
+Int_null <- clmm(Rating ~ 1 + (1 + Power * Environment | Participant) + 
+                   (1 + Power * Environment | Item), 
+                 data = s4data[filterInt,])
+
+# Comparisons with null models
+anova(PB_null, PB_Model)
+anova(Int_null, Int_Model)
+```
+
+### Main effect models
+Models showing the main effects of agent power and the environment only (but no interaction) for each of Blame and then Intentionality.
+Each model is immediately followed by a comparison of the main-effects only model with the final model (that includes the interaction).
+```{r main effect models, warning=FALSE, message=FALSE, cache=TRUE}
+PB_Model_main <- clmm(Rating ~ Power + Environment + 
+                        (1 + Power + Environment | Participant) + 
+                   (1 + Power + Environment | Item), data = s4data[filterPB,])
+
+summary(PB_Model_main)
+anova(PB_Model_main, PB_Model)
+
+Int_Model_main <- clmm(Rating ~ Power + Environment + 
+                         (1 + Power + Environment | Participant) + 
+                    (1 + Power + Environment | Item), data = s4data[filterInt,])
+
+summary(Int_Model_main)
+anova(Int_Model_main, Int_Model)
+```
+
+### Plots
+```{r raincloud plots, warning=FALSE, message=FALSE}
+# These two lines create the filters for (1) Blame/Praise and (2) Intentionality for plotting
+filterPB2 <-PlotData$Question == "pb"
+filterInt2 <-PlotData$Question == "int"
+
+# This is the code for the raincloud plots
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+raincloud_theme = theme(text = element_text(size = 12), axis.title.x = element_text(size = 12), 
+                        axis.title.y = element_text(size = 12), axis.text = element_text(size = 12), 
+                        axis.text.x = element_text(vjust = 0.5), legend.title = element_text(size = 12), 
+                        legend.text = element_text(size=12), legend.position = "right", 
+                        plot.title = element_text(lineheight=.8, face = "bold", size = 16), 
+                        panel.border = element_blank(), panel.grid.minor = element_blank(), 
+                        panel.grid.major = element_blank(), 
+                        axis.line.x = element_line(colour = 'black', size = 0.5, linetype = 'solid'), 
+                        axis.line.y = element_line(colour = 'black', size = 0.5, linetype = 'solid'))
+
+# This is the code to create the raincloud plot for the Blame data
+PBRain <- ggplot(data = PlotData[filterPB2,], 
+                 aes(y = Rating, x = PlotData[filterPB2,]$Environment : PlotData[filterPB2,]$Power, 
+                     fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Environment * Power", title = "Blame Ratings") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size = .5)
+
+PBRain
+
+# This is the raincloud plot for the Intentionality model
+IntRain <- ggplot(data = PlotData[filterInt2,], 
+                 aes(y = Rating, x = PlotData[filterInt2,]$Environment : PlotData[filterInt2,]$Power, fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + 
+  theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Environment * Power", title = "Intentionality Ratings") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size =.5)
+
+IntRain
+```
+
+
+# Research Team
+
+This research was conducted by [Bradley Kennedy](https://bradk.co.uk)  
+Principal Supervisor: Dr Suzanne L. K. Stewart  
+Supervision Team: Dr Annie Scudds & Professor Moira Lafferty  
+
+<img src="https://dl.dropboxusercontent.com/s/m56n0tfcbwbtgid/UoC%20School%20of%20Psychology%201.jpg" width="60%">  

@@ -15,7 +15,14 @@ The study aims are (1) to replicate the findings of the previous study and (2) t
 
 
 ## Open Science Framework
-Materials, data, and analysis scripts are available on the [Open Science Framework](https://osf.io/hyve2/) (OSF).
+<a href="https://osf.io/hyve2/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/m8ztv/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Materials <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/4gax3/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Data <i class="fas fa-external-link-alt"></i></a>
+
+<a href="https://osf.io/8ta2p/" class="button is-primary" target="_blank" rel="noopener noreferrer">View Analysis <i class="fas fa-external-link-alt"></i></a>
+
 
 <html>
     <div>

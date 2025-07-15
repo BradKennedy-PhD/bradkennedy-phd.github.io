@@ -1,0 +1,261 @@
+---
+title: "Study4-Environment Additional Analysis"
+author: "Bradley Kennedy"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_float:
+      collapsed: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R Set-up
+Current R Version: `r getRversion()`
+
+## Package Installation
+Check if required packages need to be installed, if so, install
+```{r install packages, error=FALSE, message=FALSE, warning=FALSE, results='hide', cache=FALSE}
+list_of_packages<-c("tidyverse","dplyr", "ordinal", "emmeans", "Hmisc", "here")
+new.packages <- 
+  list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
+if(length(new.packages))install.packages(new.packages)
+
+lapply(list_of_packages, library, character.only = TRUE)
+```
+
+Check for package updates from cloud.r-project.org
+```{r update packages, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
+update.packages(ask=FALSE, repos = "https://cloud.r-project.org")
+```
+
+# Import Data
+Import Data & Set variables
+```{r import data, results='hide', warning=FALSE, message=FALSE, cache=TRUE}
+s3s4data <- read_csv(here("DataWrangling","cleaned_s3s4data.csv"), col_types = 
+                     cols(List = col_factor(levels = c("1", "2", "3", "4")), 
+                          Question = col_factor(levels = c("int", "pb")),
+                          Power = col_factor(levels = c("high", "low")),
+                          Environment = col_factor(levels = c("inwork", "outwork")),
+                          SEValence = col_factor(levels = c("help", "harm")),
+                          Sample = col_factor(levels = c("rps", "prolific")),
+                          Student_status = col_factor(levels = c("Student","Non-student"))))
+
+# Set this here, before any changes made to s3s4data
+PlotData <- s3s4data
+```
+
+# Descriptive Stats & Chi Square on Samples
+```{r Descriptive stats on the sample, warning=FALSE, message=FALSE, cache=TRUE}
+# Proportion of students in the samples
+prop.table(table(s3s4data$Sample, s3s4data$Student_status), margin = 1)
+# Chi-square test on the proportion of students between the two samples 
+chisq.test(table(s3s4data$Sample, s3s4data$Student_status))
+
+# Descriptive statistics for age in each sample
+s3s4data %>%
+  group_by(Sample) %>%
+  summarise(mean_age = mean(Age, na.rm = TRUE),
+            sd_age = sd(Age, na.rm = TRUE),
+            n = n())
+# Count of unique participant IDs by sample
+s3s4data %>%
+  group_by(Sample) %>%
+  summarise(unique_participants = n_distinct(Participant))
+
+# Keep only one row per participant
+s3s4data_unique <- s3s4data %>%
+  distinct(Participant, .keep_all = TRUE)
+# Independent sample T-test on the mean participant age between the two samples
+t.test(Age ~ Sample, data = s3s4data_unique)
+```
+
+
+```{r results='hide', warning=FALSE, message=FALSE, cache=TRUE}
+# Conduct the analysis using sample only. Student status done for comparison only.
+# Need to have the harm filter for as S4 data only had harm.
+# Need to have the inwork filter as S3 data only had inwork.
+filterSamplePB <- (s3s4data$SEValence == "harm" & s3s4data$Question == "pb") | (s3s4data$Environment == "inwork" & s3s4data$Question == "pb")
+filterSampleInt <- (s3s4data$SEValence == "harm" & s3s4data$Question == "int") | (s3s4data$Environment == "inwork" & s3s4data$Question == "int")
+
+filterStudentStatusPB <- (s3s4data$SEValence == "harm" & s3s4data$Question == "pb") | (s3s4data$Environment == "inwork" & s3s4data$Question == "pb")
+filterStudentStatusInt <- (s3s4data$SEValence == "harm" & s3s4data$Question == "int") | (s3s4data$Environment == "inwork" & s3s4data$Question == "int")
+
+# Convert the Rating variable to an ordered factor
+s3s4data$Rating <- as.ordered(s3s4data$Rating)
+
+# Creates factors for the random effects
+s3s4data$Participant <- as.factor(s3s4data$Participant)
+s3s4data$Item <- as.factor(s3s4data$Item)
+
+# This centres the fixed factors using deviation coding
+contrasts(s3s4data$Power) <- matrix(c(.5, -.5)) 
+contrasts(s3s4data$Sample) <- matrix(c(.5, -.5))
+contrasts(s3s4data$Student_status) <- matrix(c(.5, -.5))
+```
+
+# CLMM
+
+```{r CLMM, warning=FALSE, message=FALSE, cache=TRUE}
+Sample_ModelPB <- clmm(Rating ~ Power * Sample  
+                 + (1 + Power | Participant)
+                 + (1 + Power | Item), 
+                 data = s3s4data[filterSamplePB,])
+Sample_ModelInt <- clmm(Rating ~ Power * Sample  
+                 + (1 + Power | Participant)
+                 + (1 + Power | Item), 
+                 data = s3s4data[filterSampleInt,])
+
+Student_ModelPB <- clmm(Rating ~ Power * Student_status  
+                 + (1 + Power | Participant)
+                 + (1 + Power | Item), 
+                 data = s3s4data[filterStudentStatusPB,])
+Student_ModelInt <- clmm(Rating ~ Power * Student_status  
+                 + (1 + Power | Participant)
+                 + (1 + Power | Item), 
+                 data = s3s4data[filterStudentStatusInt,])
+```
+
+```{r Sample summary, warning=FALSE, message=FALSE, cache=TRUE, R.options = list(width = 350)}
+summary(Sample_ModelPB)
+emmeans(Sample_ModelPB, pairwise ~ Power * Sample, adjust = "none")
+confint(Sample_ModelPB)
+
+summary(Sample_ModelInt)
+emmeans(Sample_ModelInt, pairwise ~ Power * Sample, adjust = "none")
+confint(Sample_ModelInt)
+```
+
+```{r Student Status summary, warning=FALSE, message=FALSE, cache=TRUE, R.options = list(width = 350)}
+summary(Student_ModelPB)
+emmeans(Student_ModelPB, pairwise ~ Power * Sample, adjust = "none")
+confint(Student_ModelPB)
+
+summary(Student_ModelInt)
+emmeans(Student_ModelInt, pairwise ~ Power * Sample, adjust = "none")
+confint(Student_ModelInt)
+```
+
+```{r Plots, warning=FALSE, message=FALSE}
+PlotData <- PlotData %>% filter(!is.na(Student_status))
+
+filterSamplePB2 <- 
+  (PlotData$SEValence == "harm" & PlotData$Question == "pb") | (PlotData$Environment == "inwork" & PlotData$Question == "pb")
+filterSampleInt2 <- 
+  (PlotData$SEValence == "harm" & PlotData$Question == "int") | (PlotData$Environment == "inwork" & PlotData$Question == "int")
+
+filterStudentStatusPB2 <- 
+  (PlotData$SEValence == "harm" & PlotData$Question == "pb") | (PlotData$Environment == "inwork" & PlotData$Question == "pb")
+filterStudentStatusInt2 <- 
+  (PlotData$SEValence == "harm" & PlotData$Question == "int") | (PlotData$Environment == "inwork" & PlotData$Question == "int")
+
+
+PlotData$Sample <- PlotData$Sample %>% 
+  as.factor() %>% 
+  plyr::revalue(c("rps"="RPS", "prolific"="Prolific"))
+PlotData$Power <- PlotData$Power %>% 
+  as.factor() %>% 
+  plyr::revalue(c("low"="Low power", "high"="High power"))
+
+source("https://gist.githubusercontent.com/benmarwick/2a1bb0133ff568cbe28d/raw/fb53bd97121f7f9ce947837ef1a4c65a73bffb3f/geom_flat_violin.R")
+raincloud_theme = theme(text = element_text(size = 12), axis.title.x = element_text(size = 12), 
+                        axis.title.y = element_text(size = 12), axis.text = element_text(size = 12), 
+                        axis.text.x = element_text(vjust = 0.5), legend.title = element_text(size = 12), 
+                        legend.text = element_text(size=12), legend.position = "right", 
+                        plot.title = element_text(lineheight=.8, face = "bold", size = 16), 
+                        panel.border = element_blank(), panel.grid.minor = element_blank(), 
+                        panel.grid.major = element_blank(), 
+                        axis.line.x = element_line(colour = 'black', size = 0.5, linetype = 'solid'), 
+                        axis.line.y = element_line(colour = 'black', size = 0.5, linetype = 'solid'))
+
+# Create raincloud plot for the Blame data
+SamplePBRain <- ggplot(data = PlotData[filterSamplePB2,], 
+                 aes(y = Rating, x = PlotData[filterSamplePB2,]$Sample : PlotData[filterSamplePB2,]$Power, 
+                     fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Sample * Power", title = "Interaction for Blame (SAMPLE)") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size = .5)
+
+SamplePBRain
+
+StudentPBRain <- ggplot(data = PlotData[filterStudentStatusPB2,], 
+                 aes(y = Rating, x = PlotData[filterStudentStatusPB2,]$Student_status : PlotData[filterStudentStatusPB2,]$Power, 
+                     fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Student Status * Power", title = "Interaction for Blame (Student Status)") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size = .5)
+
+StudentPBRain
+
+# Raincloud plot for the Intentionality model
+SampleIntRain <- ggplot(data = PlotData[filterSampleInt2,], 
+                 aes(y = Rating, x = PlotData[filterSampleInt2,]$Sample : PlotData[filterSampleInt2,]$Power, fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + 
+  theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Sample * Power", title = "Interaction for Intentionality (SAMPLE)") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size =.5)
+
+SampleIntRain
+
+StudentIntRain <- ggplot(data = PlotData[filterStudentStatusInt2,], 
+                 aes(y = Rating, x = PlotData[filterStudentStatusInt2,]$Student_status : PlotData[filterStudentStatusInt2,]$Power, fill = Power)) + 
+  geom_flat_violin(position = position_nudge(x = .2, y = 0), alpha = .8, trim=TRUE) + 
+  geom_point(aes(y = Rating, color = Power), 
+             position = position_jitter(width = .15), size = .4, alpha = 0.8) + 
+  expand_limits(x = 3) + 
+  guides(fill = FALSE) + 
+  guides(color = FALSE) + 
+  scale_color_brewer(palette = "Accent") + 
+  scale_fill_brewer(palette = "Accent") + 
+  coord_flip() + 
+  theme_bw() + 
+  raincloud_theme + 
+  labs(x = "Student Status * Power", title = "Interaction for Intentionality (Student Status)") + 
+  scale_y_continuous(breaks = seq(0,6,by = 1)) + 
+  stat_summary(fun.data = "mean_cl_boot", colour = "black", size =.5)
+
+StudentIntRain
+```
+
+
+# Research Team
+
+This research was conducted by [Bradley Kennedy](https://bradk.co.uk)  
+Principal Supervisor: Dr Suzanne L. K. Stewart  
+Supervision Team: Dr Annie Scudds & Professor Moira Lafferty  
+
+<img src="https://dl.dropboxusercontent.com/s/m56n0tfcbwbtgid/UoC%20School%20of%20Psychology%201.jpg" width="60%">  
+
