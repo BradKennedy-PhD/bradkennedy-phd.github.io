@@ -96,14 +96,3 @@ An online study conducted with Qualtrics survey software. The aim is to investig
       })()
     </script>
 </html>
-
-
-## Materials
-Link to materials here
-
-## Open Science Framework
-Link to OSF here
-
-## Other:
-Interactive results etc.
-

@@ -96,6 +96,3 @@ An online study conducted with Qualtrics survey software. The aim is to investig
       })()
     </script>
 </html>
-
-## Other:
-Interactive results etc.

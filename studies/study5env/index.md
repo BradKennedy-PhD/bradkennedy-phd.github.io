@@ -98,6 +98,3 @@ The study aims are (1) to replicate the findings of the previous study and (2) t
       })()
     </script>
 </html>
-
-## Other:
-Interactive results etc.
