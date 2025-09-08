@@ -16,12 +16,10 @@ items:
       code are available on the Open Science Framework.
     call_to_action_name: View on OSF
     call_to_action_link: https://osf.io/dg8ny/
-  - title: GitHub Repo
-    subtitle: View all files on GitHub
-    icon: fa-github
-    icon_brand: true
+  - title: Thesis
+    subtitle: View the full thesis online
+    icon: fa-book
     description: >
-      All of these pages are hosted through GitHub, all files and
-      analysis scripts are available to download directly from GitHub.
-    call_to_action_name: View on GitHub
-    call_to_action_link: https://github.com/BradKennedy-PhD
+      The full thesis **[will be]** available to read online through the University of Chester online research repository (ChesterRep).
+    call_to_action_name: Not yet available
+    call_to_action_link: #
