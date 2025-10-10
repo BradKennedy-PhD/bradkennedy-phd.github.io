@@ -1,18 +1,16 @@
 ---
-title: Bradley Kennedy's PhD GitHub Pages
-subtitle: Browse each study and the related files
+title: Bradley J Kennedy, PhD
+subtitle: \"An Open and Reproducible Investigation into the Factors that Influence Judgments of Intention and Responsibility Utilising the Side-Effect Effect\"
 hero_height: is-fullwidth
 callouts: callouts
 hide_footer: true
 ---
-  <a href="https://orcid.org/0000-0003-4636-2210" aria-label="View ORCID record" target="_blank" rel="noopener noreferrer" class="profile-card">
-  <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" alt="ORCID iD"/>
-  <span>0000-0003-4636-2210</span>
-</a>
-
-#### Last update: 10 Oct 25
-
+![Updated](https://img.shields.io/badge/📅_Updated-10_Oct_2025-082954?style=flat-square)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0003--4636--2210-A6CE39?logo=orcid&logoColor=white&style=flat-square)](https://orcid.org/0000-0003-4636-2210)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BradKennedy-PhD/bradkennedy-phd.github.io/HEAD?urlpath=rstudio)
+
+👋 Welcome to my PhD project website. 
+This space is designed to make my research fully open and accessible 🌍. You’ll find summaries of each experiment, key findings, and links to the openly shared materials, data, and code 📊. Please use the contact form if you’d like to learn more or discuss the work 📧.
 
 ## Abstract
 One phenomenon in moral decision-making is known as the Side-Effect Effect (SEE; Knobe, 2003), an asymmetry in which participants rate more blame for harmful side effects than they do praise for helpful side effects. Furthermore, participants are significantly more likely to state that harmful side effects are brought about intentionally compared with those that are helpful. The original theoretical explanation for the SEE was that observers utilise the moral valence of actions’ unintended consequences to determine their deserved praise and blame.
