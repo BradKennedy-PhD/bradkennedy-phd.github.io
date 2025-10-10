@@ -2,9 +2,9 @@
 
 let timerInterval
 Swal.fire({
-  icon: 'info',
-  title: 'Update in progress...',
-  text: 'This site is being updated. File upload in progress, check back later.',
+  icon: 'warning',
+  title: 'Patience...',
+  text: 'This feature is not yet available. Clicking won\'t do anything!',
   timer: 4000,
   timerProgressBar: true,
   willClose: () => {
