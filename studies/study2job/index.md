@@ -6,7 +6,7 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Study 2 - Job Status
+# Experiment 2 - Job Status
 
 ***
 

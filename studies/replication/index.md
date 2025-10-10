@@ -6,7 +6,7 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Knobe (2003) Replication
+# Chapter 3 - Experiment 1: Conceptual Replication of the Side-Effect Effect
 
 ***
 

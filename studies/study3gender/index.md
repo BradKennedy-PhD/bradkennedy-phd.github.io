@@ -6,7 +6,7 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Study 3 - Gender
+# Experiment 3 - Gender
 
 ***
 

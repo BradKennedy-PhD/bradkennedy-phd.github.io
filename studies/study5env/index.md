@@ -6,7 +6,7 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Study 5 - Environment
+# Experiment 5 - Environment
 
 ***
 
