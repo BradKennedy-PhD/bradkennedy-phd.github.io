@@ -1,17 +1,17 @@
-- name: Studies
+- name: Experiments
   link: /#
   dropdown:
     - name: Material Development Study
       link: /studies/matdev/
-    - name: Study 1 - Knobe (2003) Replication
+    - name: Experiment 1 - Knobe (2003) Replication
       link: /studies/replication/
-    - name: Study 2 - Job Status
+    - name: Experiment 2 - Job Status
       link: /studies/study2job/
-    - name: Study 3 - Gender
+    - name: Experiment 3 - Gender
       link: /studies/study3gender/
-    - name: Study 4 - Power
+    - name: Experiment 4 - Power
       link: /studies/study4power/
-    - name: Study 5 - Environment
+    - name: Experiment 5 - Environment
       link: /studies/study5env/
 - name: Posters
   link: /posters/
