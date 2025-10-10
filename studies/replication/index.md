@@ -6,7 +6,7 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-# Chapter 3 - Experiment 1: Conceptual Replication of the Side-Effect Effect
+# Experiment 1: Conceptual Replication of the Side-Effect Effect
 
 ***
 
