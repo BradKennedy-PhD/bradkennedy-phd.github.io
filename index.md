@@ -1,6 +1,6 @@
 ---
 title: Bradley J Kennedy, PhD
-subtitle: \"An Open and Reproducible Investigation into the Factors that Influence Judgments of Intention and Responsibility Utilising the Side-Effect Effect\"
+subtitle: "An Open and Reproducible Investigation into the Factors that Influence Judgments of Intention and Responsibility Utilising the Side-Effect Effect"
 hero_height: is-fullwidth
 callouts: callouts
 hide_footer: true
