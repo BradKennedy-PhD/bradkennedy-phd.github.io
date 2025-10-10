@@ -8,10 +8,25 @@ menubar: main_menu
 ---
 # Experiment 4 - Power
 
-***
+## 🧠 Background
 
-## Description
-An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s perceived power on people’s interpretation of their actions and the consequences. 
+* Previous studies seem to suggest that **power might be a factor** in the decisions we make about moral judgements.
+* This experiment explored whether having high or low power affected how people judged intention.
+
+## 🧪 Method
+
+* Participants: 100 people.
+* Each read stories where the main character had either more or less power in the situation.
+* They rated how intentional and responsible the character’s actions seemed.
+
+## 📊 Findings
+
+* A **significant interaction** emerged between the agent’s power level and the side-effect condition.
+* Power changed how strongly people linked harmful outcomes with level of blame.
+
+## 💬 Summary
+
+Power influenced the way people interpreted responsibility in side-effect scenarios. People tended to ascribe **high levels of blame to low-power individuals** for the harmful side-effects. Those in powerful roles were judged differently and were not afforded the same level of blame compared to those in less powerful positions.
 
 ## Open Science Framework
 <a href="https://osf.io/u3j4y/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>

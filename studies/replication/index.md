@@ -8,7 +8,27 @@ menubar: main_menu
 ---
 # Experiment 1: Conceptual Replication of the Side-Effect Effect
 
-***
+## 🧠 Background
+
+* The goal was to **replicate previous findings** about how people judge harmful versus helpful side-effects.
+* Replication is important to test whether an effect is real and consistent.
+
+## 🧪 Method
+
+* Participants: 176 people (students and general population).
+* They read scenarios where a person’s decision had a positive or negative side-effect.
+* They rated whether the person intended the outcome and how responsible they were.
+
+## 📊 Findings
+
+* The study **successfully replicated the side-effect effect**.
+* People judged harmful side-effects to be worthy of more blame than helpful side-effects were worthy of praise.
+* People judged harmful outcomes as more intentional than helpful ones.
+* The **effect was even stronger than in the original research**.
+
+## 💬 Summary
+
+This experiment confirmed that people tend to see harm as more deliberate than help, even when the person’s intentions are identical. It strengthened confidence in the reliability of the side-effect effect.
 
 ## Description
 B Kennedy's PhD project is based on this initial publication by Joshua Knobe, 2003, an American philosopher. Knobe theorised a side-effect effect (SEE) which can be described as viewing ‘side-effect’ actions as more intentional if they were viewed as harmful, and less intentional if they were helpful.

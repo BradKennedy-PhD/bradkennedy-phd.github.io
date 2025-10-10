@@ -8,10 +8,24 @@ menubar: main_menu
 ---
 # Experiment 3 - Gender
 
-***
+## 🧠 Background
 
-## Description
-An online study conducted with Qualtrics survey software. The aim is to investigate the impact of an agent’s gender on people’s interpretation of their actions and the consequences. 
+* Existing research shows that **people hold stereotypes about gender and job roles**.
+* This study tested whether the gender of the person in the scenario affected how intentional their actions seemed.
+
+## 🧪 Method
+
+* Participants: 100 people.
+* They read side-effect scenarios where the agent’s gender was varied.
+* They rated the person’s intention and responsibility.
+
+## 📊 Findings
+
+* **No significant differences based on gender** were found.
+* People judged male and female agents similarly in terms of intention and blame.
+
+## 💬 Summary
+Gender did not seem to bias people’s perceptions of intention or responsibility. Judgements were consistent regardless of whether the character was male or female.
 
 ## Open Science Framework
 <a href="https://osf.io/jes79/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>

@@ -8,14 +8,25 @@ menubar: main_menu
 ---
 # Experiment 2 - Job Status
 
-***
+## 🧠 Background
 
-## Description
-This study will investigate how intention is viewed. That is, whether or not an action was planned. Additionally, it will investigate how much particular actions deserve praise or blame.
-Vignettes will vary between high- and low-ranking jobs, and the side-effect will vary between helpful and harmful.
-It is predicted that there will be a difference in the reported levels of perceived intention between high- and low-ranking job roles. 
-It is further predicted that participants will attribute high levels of blame for harmful side-effects and low levels of praise for helpful side-effects.
-Data will be analysed with mixed effects modelling in R. (N=100)
+* Earlier studies often used neutral or powerful characters.
+* This experiment asked whether the **status of a person’s job** role would influence judgements of intention and responsibility.
+
+## 🧪 Method
+
+* Participants: 100 people.
+* Each read stories where the main character’s job was described as either high-status or low-status.
+* They then rated how intentional the side-effect seemed and how much responsibility they felt the character deserved.
+
+## 📊 Findings
+
+* **No significant difference** was found between high-status and low-status roles.
+* Job role did not appear to change how people judged intention or responsibility.
+
+## 💬 Summary
+
+People’s judgements of intention and responsibility seemed unaffected by the social status of the character’s job. This suggested that job hierarchy alone does not shape moral judgements in this context.
 
 ## Open Science Framework
 <a href="https://osf.io/kncea/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>

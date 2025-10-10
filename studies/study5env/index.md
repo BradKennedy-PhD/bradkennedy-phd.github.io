@@ -8,10 +8,26 @@ menubar: main_menu
 ---
 # Experiment 5 - Environment
 
-***
+## 🧠 Background
 
-## Description
-The study aims are (1) to replicate the findings of the previous study and (2) to evaluate which of two theoretical frameworks (DSCM vs NVM) provides the best explanation for the observed pattern of results. To explore this, the study will examine judgements of harmful side effects for low-power versus high-power agents in their work situation (which is the same as the previous study) versus in an out-of-work situation.
+* The final study built on the unexpected findings of the Power Study.
+* It explored how **environmental context and social cues** might shape judgements of intention.
+
+## 🧪 Method
+
+* Participants: 205 people.
+* They read stories that placed the character in different environmental contexts (e.g., corporate vs. community settings / in-work versus out-of-work contexts).
+* They judged whether the person intended the outcome and how responsible they were.
+
+## 📊 Findings
+
+* No significant interaction between the agent’s environment and their level of power on ratings of blame or intentionality.
+* **Significant main effect of environment** on both ratings of blame and intentionality, such that in the in-work scenarios, ratings of blame and intention were higher compared to the out-work scenarios.
+
+## 💬 Summary
+
+* The environment in which an action takes place can influence how people judge the intentions and blameworthiness of the actor.
+* Does not support the two main models being tested in this thesis, suggestions are made about an alternative framework that might explain the findings.
 
 
 ## Open Science Framework

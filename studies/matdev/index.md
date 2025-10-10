@@ -6,14 +6,28 @@ hide_footer: true
 show_sidebar: false
 menubar: main_menu
 ---
-
 # Material Development Study
 
----
+## 🧠 Background
 
-## Description
+* Needed to understand how people judge job roles and sectors of work.
+* The data from this study would **inform the development of materials** for later experiments.
 
-This online study examined the social opinions of various job roles and working sectors.
+## 🧪 Method
+
+* Participants: 30 people.
+* Participants provided their ratings for various characteristics of different job roles.
+* Participants also provided their opinions on various sectors of work.
+
+## 📊 Findings
+
+* There were some differences in how people viewed different job roles and sectors.
+* These differences were important for designing the materials for later experiments.
+* One of the more notable differences was how people viewed level of power associated with different job roles.
+
+## 💬 Summary
+
+This development study helped collect the data required to develop the vignettes used in the experimental studies that followed.
 
 ## Open Science Framework
 <a href="https://osf.io/w279r/" target="_blank" rel="noopener noreferrer">View OSF Project Page <i class="fas fa-external-link-alt"></i></a>
