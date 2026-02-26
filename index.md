@@ -5,7 +5,7 @@ hero_height: is-fullwidth
 callouts: callouts
 hide_footer: true
 ---
-![Updated](https://img.shields.io/badge/📅_Updated-10_Oct_2025-188eac?style=flat-square)
+![Updated](https://img.shields.io/badge/📅_Updated-26_Feb_2026-188eac?style=flat-square)
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0003--4636--2210-A6CE39?logo=orcid&logoColor=white&style=flat-square)](https://orcid.org/0000-0003-4636-2210)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/BradKennedy-PhD/bradkennedy-phd.github.io/HEAD?urlpath=rstudio)
 
@@ -25,32 +25,3 @@ These mixed results lend support for both the Norm Violation Model and the Deep-
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- <script src="{{ site.baseurl }}/assets/js/popup.js" type="text/javascript"></script> -->
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Find the "Not yet available" button
-  const thesisButton = Array.from(document.querySelectorAll('a, button'))
-    .find(el => el.textContent.trim() === 'Not yet available');
-
-  if (thesisButton) {
-    thesisButton.addEventListener('click', function(event) {
-      event.preventDefault(); // stop the default link behaviour
-      let timerInterval;
-      Swal.fire({
-        icon: 'warning',
-        title: 'Patience...',
-        text: 'This feature isn’t available yet, but it will be coming soon!',
-        timer: 4000,
-        timerProgressBar: true,
-        willClose: () => {
-          clearInterval(timerInterval);
-        }
-      }).then((result) => {
-        if (result.dismiss === Swal.DismissReason.timer) {
-          console.log('I was closed by the timer');
-        }
-      });
-    });
-  }
-});
-</script>
